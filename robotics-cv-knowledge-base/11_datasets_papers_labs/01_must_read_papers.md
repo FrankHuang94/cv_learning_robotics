@@ -1,6 +1,6 @@
 # Must Read Papers
 
-> **Last Updated:** 2026-06-10
+> **Last Updated:** 2026-06-11
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** A research database is useful only if it distinguishes landmark evidence, reproducible resources, institutional incentives, and benchmark blind spots. Must Read Papers must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Must Know Datasets](00_must_know_datasets.md), [Major Labs And Companies](02_major_labs_and_companies.md), [Knowledge Base Index](../INDEX.md)
@@ -30,6 +30,121 @@ Architecturally, modular pipelines expose intermediate state and allow geometric
 Manipulation converts millimeter-scale pose, depth, or contact errors into missed grasps and collisions. Navigation compounds localization drift and stale semantic memory over long trajectories. Human-robot interaction adds uncertain intent and safety margins. Real robots also face reflective and transparent materials, self-occlusion, changing illumination, sensor dropout, actuator delay, and objects absent from training.
 
 Consequently, a credible result should state the embodiment, sensors, control frequency, inference hardware, environment split, number of trials, reset policy, intervention policy, and failure taxonomy. Generalization claims should name the axis held out: objects, layouts, tasks, instructions, embodiments, dynamics, or time. Aggregating these axes into a single success number conceals where the system actually transfers.
+
+## Formal Problem Formulation
+
+A resource map is useful when it records comparability, not only names.
+For each dataset or paper, define the observation space, action convention,
+embodiment, collection policy, train-test unit, evaluation protocol, license,
+and known leakage. For each result, distinguish within-distribution performance,
+adaptation performance, and zero-shot transfer. Missing metadata is itself a
+research limitation because it prevents controlled aggregation and replication.
+
+For **Must Read Papers**, the paper-level specification should name the random variables,
+coordinate frames, prediction horizon, and decision interface. It should also
+state assumptions that are often hidden: static versus dynamic scene,
+calibrated versus drifting sensors, known versus open-set objects, rigid versus
+deformable interactions, and whether test-time adaptation or human correction
+is allowed. These assumptions define the actual problem more precisely than the
+model name.
+
+
+
+## Experimental Design at a CVPR / Robotics Research Standard
+
+### Hypotheses and Baselines
+
+Begin with a falsifiable hypothesis, not “our model improves performance.” A
+strong hypothesis identifies a mechanism: temporal memory should improve
+performance specifically after occlusion; metric 3D state should improve
+viewpoint transfer; tactile input should help after first contact; heterogeneous
+pretraining should reduce target-domain sample complexity. Select baselines that
+isolate that mechanism: a matched-capacity model without the component, a
+classical or modular alternative, and a strong current system evaluated through
+the same observation and action interface.
+
+Match data, optimization steps, augmentations, action horizon, and deployment
+frequency wherever possible. Parameter count alone is not a sufficient control
+because frozen pretraining, context length, image resolution, and sampling steps
+change effective compute. Report training FLOPs or accelerator-hours and
+measured inference latency. When exact matching is impossible, disclose the
+asymmetry and include a resource-performance curve rather than a single point.
+
+### Splits, Leakage, and Generalization
+
+The experimental unit should be the factor intended to generalize: object
+instance, physical scene, building, operator, task template, robot, or collection
+day. Randomly splitting adjacent frames leaks appearance and state. Randomly
+splitting demonstrations from the same reset can leak trajectories. Language
+templates can leak task identity even when object instances are new. Construct
+grouped splits before training and publish the group identifiers.
+
+Report in-distribution performance separately from each held-out axis and from
+their composition. “Unseen” must say unseen in what sense. A novel object in a
+known category and pose is different from an unknown category, and an unseen
+instruction paraphrase is different from a new physical skill. For pretrained
+models, audit likely overlap with public datasets and avoid claiming strict
+zero-shot novelty when pretraining provenance is unknown.
+
+### Statistics and Reporting
+
+Closed-loop trials are Bernoulli or ordinal outcomes with substantial
+environmental variation. Report the numerator and denominator, not only a
+percentage. Include confidence intervals such as Wilson intervals for success
+rates, stratify by scene or task, and use hierarchical bootstrap when trials are
+nested within objects or environments. Run enough independent seeds to expose
+optimization variance and enough physical trials to expose deployment variance.
+Do not treat thousands of video frames from one episode as independent samples.
+
+Average success should be accompanied by worst-group performance, time to
+completion, interventions, safety violations, recovery success, and a failure
+taxonomy. Pre-register success criteria for ambiguous tasks and score videos
+blind to method when human judgment is required. Preserve failed runs and
+timeouts in the released logs.
+
+## Diagnostic Ablations and Failure Analysis
+
+Ablations should remove information or capacity in a way that tests the claimed
+causal story. Useful interventions include removing temporal context, shuffling
+language, withholding proprioception, perturbing calibration, delaying one
+modality, replacing predicted geometry with ground truth, and replacing the
+planner or controller with an oracle. Oracle studies locate the bottleneck:
+ground-truth pose tests the perception gap, ground-truth subgoals test the
+reasoning gap, and replay under a validated controller tests the action gap.
+
+Stress tests should vary lighting, clutter, occlusion, camera pose, distractors,
+reflective or transparent materials, actuator delay, and scene rearrangement.
+For each failure, record the earliest observable precursor and whether the
+system's confidence changed before the physical error. A useful taxonomy
+separates sensing failure, state-estimation failure, grounding failure, planning
+failure, control failure, and invalid evaluation assumptions. “Policy failed”
+is not an analysis.
+
+## Reproducibility Checklist
+
+- Publish exact train, validation, and test episode identifiers.
+- Record robot model, end effector, sensors, calibration procedure, and control interface.
+- State observation rate, policy rate, action horizon, executed chunk length, and latency distribution.
+- Release action normalization, coordinate-frame conventions, preprocessing, and success predicates.
+- Report model initialization, frozen modules, optimizer, schedule, augmentations, seeds, and compute.
+- Preserve per-trial outcomes, intervention logs, reset policy, exclusions, and representative failures.
+- Distinguish simulation, replay, human teleoperation, autonomous execution, and post-selected video.
+- Document licenses, privacy constraints, safety limits, and any unavailable proprietary training data.
+
+## Thesis-Level Research Questions
+
+1. Which latent variables are necessary and sufficient for must read papers, and
+   how can sufficiency be tested through interventions rather than probes alone?
+2. Under which distribution shifts does the proposed representation fail
+   gracefully, become miscalibrated, or produce confidently unsafe actions?
+3. What is gained by end-to-end learning after matching data, compute, control
+   rate, and privileged geometric information against a modular baseline?
+4. Can active perception or contact reduce uncertainty more efficiently than
+   increasing model size or demonstration count?
+5. How does performance scale with independent changes in task diversity,
+   environment diversity, embodiment diversity, and trajectory count?
+6. Which failures are detectable early enough for abstention, replanning, or
+   human assistance, and what is the cost of those safeguards?
 
 ## Key Systems / Methods / Papers
 

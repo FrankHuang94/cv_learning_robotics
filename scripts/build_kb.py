@@ -9,7 +9,7 @@ import re
 
 
 ROOT = Path(__file__).resolve().parents[1] / "robotics-cv-knowledge-base"
-UPDATED = date(2026, 6, 10).isoformat()
+UPDATED = date(2026, 6, 11).isoformat()
 
 STRUCTURE = {
     "00_scope_and_map": "00_overview 01_what_counts_as_robotics_cv 02_field_map 03_major_debates",
@@ -296,6 +296,627 @@ TOPIC_DATASETS = {
     "humanoid": [("HumanoidBench", "whole-body control", "task reward", "Standardized simulated humanoid tasks")],
 }
 
+DOMAIN_FORMALISM = {
+    "00_scope_and_map": r"""
+Let a robot receive observations \(o_{0:t}\), execute actions \(a_{0:t-1}\), and
+operate under a task variable \(g\). A robotics-vision representation
+\(z_t=f_\theta(o_{0:t},a_{0:t-1},g)\) is useful only insofar as it supports a
+decision rule \(\pi(a_t\mid z_t,g)\) with low task risk. This definition is
+deliberately stricter than requiring high mutual information with image labels.
+It asks whether \(z_t\) preserves the geometry, temporal state, uncertainty, and
+causal structure needed by the action. Two representations can be equivalent
+for classification yet radically different for collision avoidance or contact.
+""",
+    "01_history": r"""
+The history can be organized as successive factorizations of the same latent
+state-estimation problem. Geometric systems specify an observation model
+\(p(o_t\mid x_t)\) and transition model \(p(x_t\mid x_{t-1},a_{t-1})\);
+discriminative systems estimate task variables directly; foundation models
+learn broad priors before robot adaptation. These are not mutually exclusive.
+Modern systems still solve coordinate transforms, correspondence, filtering,
+and constrained optimization even when those operations are embedded in a
+neural network.
+""",
+    "02_robot_perception_foundations": r"""
+The canonical formulation is Bayesian filtering:
+\[
+p(x_t\mid o_{1:t},a_{1:t-1}) \propto
+p(o_t\mid x_t)\int p(x_t\mid x_{t-1},a_{t-1})
+p(x_{t-1}\mid o_{1:t-1},a_{1:t-2})\,dx_{t-1}.
+\]
+The state \(x_t\) may contain camera pose, object pose, velocity, calibration,
+contact, or map variables. A learned estimator changes the parameterization,
+but it does not remove observability, synchronization, or uncertainty. The
+important question is which latent variables are identifiable under the
+available sensor trajectory and which require active motion or contact.
+""",
+    "03_core_robotics_cv_problems": r"""
+For a perception output \(y=f_\theta(o)\), the correct objective is not merely
+\(\ell(y,y^\star)\) but expected downstream regret:
+\[
+\mathcal{R}(\theta)=\mathbb{E}\left[
+J(\pi^\star,x)-J(\pi(f_\theta(o)),x)\right].
+\]
+This exposes why annotation metrics can be misleading. A small mask error on a
+background pixel may be irrelevant, while a similar error at a grasp contact,
+door edge, or traversability boundary changes the feasible action set. Research
+should therefore report both task-native perception metrics and decision-aware
+metrics that weight errors by their physical consequence.
+""",
+    "04_3d_and_spatial_understanding": r"""
+A spatial model estimates a scene field or structured state \(S_t\) from posed
+observations. It should answer at least four query classes: occupancy
+\(p(\mathrm{occ}(q))\), semantics \(p(c\mid q)\), geometry such as signed
+distance \(d(q)\), and dynamics \(p(S_{t+1}\mid S_t,a_t)\). Rendering quality is
+not sufficient: planning needs conservative free space, consistent frames, and
+bounded update latency. The representation must distinguish unobserved space
+from observed free space, a distinction that image synthesis metrics often
+erase.
+""",
+    "05_multimodal_perception": r"""
+For modalities \(o_t^{1:M}\), fusion estimates
+\(p(x_t\mid o_{1:t}^{1:M})\) while accounting for asynchronous timestamps,
+calibration, and modality-dependent failure. Conditional independence is rarely
+valid: tactile observations depend on actions and contact, depth failure
+correlates with material, and proprioception shares controller latency. A
+robust fusion model should expose reliability variables \(r_t^m\) and degrade
+gracefully when one modality is delayed, saturated, absent, or inconsistent.
+""",
+    "06_vla_and_embodied_foundation_models": r"""
+A VLA policy models an action sequence conditioned on multimodal history and a
+goal:
+\[
+\pi_\theta(a_{t:t+H-1}\mid o_{t-K:t},q_{t-K:t},\ell,e),
+\]
+where \(q\) is proprioception, \(\ell\) is language, and \(e\) identifies the
+embodiment or action convention. The horizon \(H\), observation window \(K\),
+control rate, and execution strategy are part of the model definition. A
+one-step policy, an open-loop action chunk, and a receding-horizon diffusion
+policy induce different closed-loop systems even when trained on the same
+trajectories.
+""",
+    "07_data_simulation_and_training": r"""
+Robot data are samples from a behavior policy, not an independent and
+identically distributed image corpus. A trajectory
+\(\tau=(o_0,a_0,\ldots,o_T)\sim p_{\mu,e,\mathcal{E}}(\tau)\) depends on the
+operator or collection policy \(\mu\), embodiment \(e\), and environment
+\(\mathcal{E}\). Dataset scaling changes this mixture and therefore changes both
+coverage and bias. Effective sample size can be far smaller than frame count
+because adjacent observations, repeated resets, and scripted demonstrations are
+strongly correlated.
+""",
+    "08_manipulation_navigation_and_control": r"""
+Closed-loop performance follows the coupled dynamics
+\(x_{t+1}=F(x_t,a_t,w_t)\), \(o_t=G(x_t,v_t)\), and
+\(a_t=\pi_\theta(o_{0:t},g)\). Perception, planning, and control cannot be
+evaluated as independent blocks when their errors change the next observation.
+For action chunks, the executed command is often
+\(a_{t:t+h-1}\) with \(h\leq H\); choosing \(h\) trades inference cost against
+feedback and should be treated as an experimental variable.
+""",
+    "09_robot_platforms_and_hardware": r"""
+Deployment feasibility is constrained by a latency budget
+\[
+T_{\mathrm{sense}}+T_{\mathrm{transfer}}+T_{\mathrm{infer}}+
+T_{\mathrm{plan}}+T_{\mathrm{actuate}} \leq T_{\mathrm{deadline}}.
+\]
+Average throughput does not establish this inequality. Tail latency, thermal
+throttling, sensor jitter, dropped frames, and asynchronous clocks determine
+whether the robot observes and reacts to the same physical event. Hardware
+comparisons should normalize image resolution, precision, batch size, power
+mode, controller interface, and the portion of computation performed offboard.
+""",
+    "10_frontier_2024_2026": r"""
+Frontier evidence should be represented as a set of dated claims
+\(C=\{(c_i,s_i,t_i,r_i)\}\), where \(s_i\) is the source, \(t_i\) the date, and
+\(r_i\) a reproducibility level. A peer-reviewed paper, an open checkpoint, a
+company technical report, and a demonstration video provide different evidence.
+They should not be collapsed into a single capability ranking. Claims about
+generality require explicit train-test boundaries and claims about autonomy
+require accounting for resets, interventions, remote operation, and selection.
+""",
+    "11_datasets_papers_labs": r"""
+A resource map is useful when it records comparability, not only names.
+For each dataset or paper, define the observation space, action convention,
+embodiment, collection policy, train-test unit, evaluation protocol, license,
+and known leakage. For each result, distinguish within-distribution performance,
+adaptation performance, and zero-shot transfer. Missing metadata is itself a
+research limitation because it prevents controlled aggregation and replication.
+""",
+    "12_meta": r"""
+A research note should encode an argument, not a bibliography. Its minimal
+structure is: problem definition, assumptions, formal objective, evidence,
+counter-evidence, failure modes, and falsifiable next experiments. Confidence
+should be tied to source quality and replication status. Updating a note means
+changing the claim graph when evidence changes, preserving dates and unresolved
+contradictions rather than silently replacing old conclusions.
+""",
+}
+
+VLA_DEEP_DIVES = {
+    "00_overview_roadmap": r"""
+### A Taxonomy by Information Flow
+
+The most informative taxonomy separates systems by where information is
+compressed. In a monolithic policy, image, language, proprioception, and action
+tokens share a backbone and the only externally visible state is the action.
+In a hierarchical policy, a slow model predicts a subgoal, latent plan, or
+semantic embedding consumed by a fast controller. In a modular stack, explicit
+objects, maps, trajectories, or constraints cross component boundaries. In a
+model-based agent, candidate actions are evaluated through predicted future
+states. These choices determine not only accuracy but also debuggability,
+latency, data reuse, and where safety constraints can be inserted.
+
+The roadmap should therefore be read along four axes. **Representation** asks
+whether state is token-based, object-centric, metric 3D, or an unstructured
+latent. **Action generation** asks whether outputs are discrete tokens,
+continuous regression, diffusion samples, flow trajectories, or references for
+a lower-level controller. **Temporal organization** asks whether the system is
+reactive, chunked, recurrent, memory-augmented, or explicitly hierarchical.
+**Learning signal** asks how web data, video, demonstrations, simulation,
+autonomous rollouts, and preferences contribute. A credible paper identifies
+its position on all four axes and ablates the claimed source of progress.
+
+### Research Milestones
+
+A useful progression is harder than a sequence of larger demonstrations.
+First, establish repeatable single-skill control under object and viewpoint
+variation. Second, test compositional instructions while holding motor skills
+fixed. Third, introduce persistent state changes and require recovery from
+failed subgoals. Fourth, transfer across scenes and embodiments with a declared
+adaptation budget. Fifth, evaluate unattended operation and calibrated
+abstention. Each stage should preserve the earlier controls, otherwise apparent
+long-horizon progress can come from easier resets, more permissive success
+criteria, or hidden human assistance.
+""",
+    "01_vla_model_architectures": r"""
+### Tokenization, Fusion, and Action Heads
+
+Suppose image patches produce tokens \(v\), language produces \(w\),
+proprioception produces \(q\), and previous actions produce \(u\). Early fusion
+applies a shared transformer to \([v,w,q,u]\); late fusion encodes modalities
+separately and combines them through cross-attention; a two-tower policy keeps a
+large semantic backbone separate from a small action expert. Early fusion
+maximizes interaction capacity but is expensive at control rate. Late fusion
+can cache language or visual context but may bottleneck fine correspondence.
+Two-system designs make rate separation explicit and permit embodiment-specific
+experts, at the cost of deciding what information crosses the interface.
+
+Discrete action modeling minimizes cross-entropy over bins or learned action
+tokens. Its advantages are stable sequence training and compatibility with
+language-model infrastructure; its liabilities are quantization, awkward
+multivariate coupling, and sensitivity to action normalization. Gaussian
+regression minimizes a continuous likelihood but tends to average distinct
+strategies. Mixture-density, diffusion, and flow heads model multimodality at
+increasing computational cost. Comparisons must equalize horizon, parameter
+count, observation history, and inference budget. Otherwise an apparent
+decoder advantage may actually come from more visual context or more control
+updates.
+
+### Architectural Ablations
+
+A minimum ablation matrix removes language pretraining, freezes versus tunes the
+vision backbone, varies proprioceptive input, replaces the action head, changes
+chunk length, and tests with and without temporal history. Report both mean
+success and failure composition. If removing language barely affects motor
+tasks, the model may be a visual policy with an instruction selector rather
+than a genuinely grounded VLA. If longer history helps only in the original
+scene, the model may memorize reset dynamics instead of tracking state.
+""",
+    "02_rt1_rt2_rtx": r"""
+### What the RT Line Actually Established
+
+RT-1 demonstrated that a tokenized transformer policy could absorb a broad
+multi-task real-robot dataset while retaining practical inference. Its
+contribution is best understood as a scaling and representation result, not a
+claim that discrete tokens are universally optimal. RT-2 reframed robot actions
+as part of a vision-language token vocabulary and co-fine-tuned on web and
+robotic data. The key hypothesis was that semantic concepts learned from the web
+could alter physical action selection. RT-X and Open X-Embodiment shifted the
+unit of scale from tasks on one platform to a heterogeneous mixture of
+institutions, controllers, cameras, and embodiments.
+
+Cross-embodiment learning introduces a latent alignment problem. A seven-degree
+arm delta, a mobile base command, and an end-effector waypoint do not share a
+literal action meaning. Normalizing each dimension to a common range aligns
+numbers, not dynamics. Dataset mixtures can still help by sharing perception,
+language grounding, object-state transitions, and high-level skill structure,
+while leaving low-level decoding embodiment-specific. To demonstrate that
+transfer, compare a shared backbone with separate experts against single-domain
+training at equal target-domain data and optimization steps.
+
+### Evaluation Caveats
+
+The original systems use different robots, task sets, training corpora, and
+success definitions, so their headline numbers are not a leaderboard.
+Important controls include deduplicating visually or linguistically overlapping
+tasks, separating novel instructions from novel physical skills, and reporting
+per-dataset sampling weights. Negative transfer should be measured explicitly:
+which source embodiments lower target performance, and does filtering by action
+semantics, morphology, or visual domain recover it? These questions are more
+scientifically useful than asking whether the largest pooled model wins on
+average.
+""",
+    "03_openvla_octo_and_open_models": r"""
+### Reproducibility as a Scientific Variable
+
+Open models make questions accessible that closed demonstrations cannot answer:
+which layers encode language grounding, how action tokenization affects
+precision, whether parameter-efficient adaptation matches full fine-tuning, and
+how performance changes under quantization or smaller visual backbones.
+OpenVLA emphasizes adaptation of a large pretrained multimodal backbone with
+tokenized actions. Octo emphasizes a generalist transformer policy and flexible
+task or observation tokenization across heterogeneous robot data. Their design
+differences should be studied under a common target task rather than inferred
+from separate benchmark tables.
+
+An adaptation study should specify checkpoint provenance, exact dataset
+episodes, action normalization, image preprocessing, optimizer state, number of
+gradient updates, random seeds, and deployment controller. LoRA rank, frozen
+layers, and mixed-precision settings affect both compute and capacity. A fair
+comparison reports wall-clock training, peak memory, inference latency, and
+closed-loop trials. Offline action error is useful for detecting broken
+pipelines but is not a policy metric because many actions are valid and small
+errors can have state-dependent consequences.
+
+### Open-Model Research Agenda
+
+High-value experiments include swapping visual encoders while holding the
+action decoder fixed; probing whether features encode depth, support, and
+object permanence; testing calibration and camera shifts; and measuring the
+data needed to adapt to a new embodiment. Release-quality work should include a
+deployment script, normalization statistics, controller frequency, safety
+limits, and raw per-trial outcomes. Without these, weights alone do not provide
+reproducibility.
+""",
+    "04_pi0_gr00t_helix": r"""
+### Three Distinct System Hypotheses
+
+These systems should not be grouped merely because they target general-purpose
+robots. The pi0 family tests whether a pretrained multimodal backbone plus a
+continuous flow-based action expert can scale across tasks and embodiments.
+GR00T is better interpreted as an integrated program spanning data generation,
+simulation, multimodal pretraining, and humanoid adaptation. Helix tests an
+asynchronous hierarchy in which a slower semantic model conditions a compact
+high-rate visuomotor policy. The scientific hypotheses concern action
+distribution, data infrastructure, and timescale separation respectively.
+
+For flow matching, define a path between noise \(a^0\) and demonstrated action
+chunks \(a^1\), for example \(a^\tau=(1-\tau)a^0+\tau a^1\). A network predicts
+the velocity field \(v_\theta(a^\tau,\tau,c)\) under context \(c\), minimizing
+\(\mathbb{E}\|v_\theta-(a^1-a^0)\|^2\). At inference, integrating the learned
+field maps noise to a conditional action sample. The important robotics
+variables are solver steps, chunk horizon, receding-horizon execution, and the
+frequency at which visual context is refreshed.
+
+For a two-system humanoid policy, the interface latent is a potential
+bottleneck and a useful object of study. Does it encode object identity,
+spatial target, desired contact, phase, or a complete motor plan? Probe it with
+linear prediction, intervention, stale-latent tests, and bandwidth reduction.
+Evaluate whether the fast policy can reject an obsolete semantic command after
+the scene changes. A hierarchy is only robust if information can flow quickly
+enough to stop or revise action, not merely initiate it.
+
+### Evidence Standard
+
+Company-reported demonstrations should be documented with exact dates and
+treated as system evidence, not independent replication. A serious comparison
+needs common tasks, matched hardware access, transparent training data, and
+identical intervention accounting, which are generally unavailable. The
+appropriate scholarly response is to compare disclosed mechanisms and derive
+falsifiable experiments, while avoiding capability rankings unsupported by a
+shared protocol.
+""",
+    "05_world_models_for_robotics": r"""
+### Prediction Targets and Planning
+
+A world model can predict pixels, discrete latent tokens, object states,
+occupancy, contact events, rewards, or value-relevant features. Let an encoder
+produce \(z_t=E(o_{\leq t})\), a dynamics model predict
+\(\hat z_{t+1}=F(z_t,a_t)\), and a decoder or task head answer queries from
+\(\hat z\). Pixel losses preserve appearance but overweight texture; latent
+losses depend on what the encoder chooses to discard; object-centric losses
+require stable discovery and correspondence; geometric losses provide
+structure but may omit material and semantics. Multi-target training is often
+necessary because no single prediction space captures all control-relevant
+variables.
+
+Planning chooses an action sequence by approximately optimizing
+\(\arg\max_{a_{t:t+H}} \mathbb{E}_{F}[R(z_{t:t+H},a_{t:t+H})]\). Sampling-based
+MPC, gradient-based planning, tree search, and policy-guided proposal methods
+make different smoothness and compute assumptions. Every planner can exploit
+model error. Robust protocols therefore test predicted and realized returns,
+uncertainty growth with horizon, adversarial candidate actions, and replanning
+frequency. Short-horizon predictive checks may be more reliable than claiming a
+single model can imagine an entire household task.
+
+### Causal and Epistemic Limits
+
+Passive video identifies correlations among visual changes but not the result
+of robot-specific interventions. It cannot determine which force, trajectory,
+or controller caused an outcome when those variables are absent. Robot data,
+simulation, and instrumented human demonstrations can align actions with
+transitions, but each has bias. Ensembles, latent stochasticity, and
+out-of-distribution scores should be evaluated by whether they prevent planning
+through unsupported regions, not only by calibration on held-out frames.
+""",
+    "06_diffusion_policy_and_action_generation": r"""
+### Score-Based Action Modeling
+
+Diffusion policies corrupt demonstrated action sequences with noise and learn
+to reverse that process conditioned on observations. In a standard
+parameterization,
+\(a^k=\sqrt{\bar\alpha_k}a^0+\sqrt{1-\bar\alpha_k}\epsilon\), and the network
+minimizes \(\mathbb{E}\|\epsilon-\epsilon_\theta(a^k,k,c)\|^2\). The conditional
+distribution can represent multiple valid grasps or trajectories without
+averaging them. The cost is iterative inference and sensitivity to the noise
+schedule, number of denoising steps, action normalization, and temporal horizon.
+
+The deployed controller usually predicts \(H\) actions but executes only the
+first \(h\). Small \(h\) improves feedback and raises inference load; large
+\(h\) lowers compute but makes the policy open-loop. Temporal ensembling smooths
+overlapping chunks but can blur abrupt contact transitions. Experiments should
+sweep \(H\), \(h\), denoising steps, and observation latency jointly, because
+the best offline denoising loss may not produce the best closed-loop policy.
+
+### Comparison with Flow and Autoregression
+
+Diffusion, rectified flow, flow matching, autoregressive tokens, and mixture
+models differ in training objective and sampling path, but architecture and
+compute often confound comparisons. Equalize visual backbone, dataset,
+conditioning history, action horizon, and measured inference deadline. Report
+mode coverage with task-relevant clusters, not just mean squared action error.
+For contact-rich tasks, analyze approach, first contact, force buildup,
+manipulation, and release separately; a decoder can be strong in free space and
+unstable at contact.
+""",
+    "07_generalist_vs_specialist": r"""
+### Capacity Allocation and Routing
+
+The generalist-specialist debate can be formalized as a resource-allocation
+problem. Shared parameters reduce estimation error by pooling data but increase
+interference when tasks require incompatible features or control laws.
+Specialists reduce interference but duplicate representation learning and need
+routing. Mixture-of-experts, adapters, embodiment-specific action heads, and
+skill libraries occupy intermediate points. The relevant quantity is not total
+parameter count but target performance under fixed data, compute, latency, and
+validation budgets.
+
+Measure transfer with a matrix \(T_{ij}\): improvement on target \(j\) from
+adding source \(i\) at a fixed target-data budget. Positive average transfer can
+hide severe negative entries. Cluster sources by visual domain, task semantics,
+kinematics, action convention, or contact regime and test which grouping best
+predicts \(T\). This turns an architectural slogan into a falsifiable study of
+what is actually shared.
+
+### Hybrid Accountability
+
+A hybrid system should define contracts between broad and narrow components.
+Examples include a generalist proposing an object and subgoal while a geometric
+module verifies reachability, or a language planner selecting a skill whose
+specialist controller has a validated operating envelope. Interfaces need
+confidence, frame conventions, termination conditions, and failure codes.
+Otherwise modularity merely relocates ambiguity. Evaluate routing mistakes,
+specialist failures, and interface failures separately.
+""",
+    "08_levels_of_generalization": r"""
+### A Factorized Generalization Cube
+
+Generalization should be indexed by held-out factors rather than labeled
+zero-shot. Let \(G=(g_o,g_s,g_t,g_\ell,g_e,g_d,g_\tau)\) denote novelty in
+objects, scenes, tasks, language, embodiment, dynamics, and time. A test split
+is a subset of this cube. Holding out object instances while preserving category
+and scene is much easier than simultaneously changing object, layout, camera,
+and embodiment. Papers should publish the exact split generator and report each
+axis separately before presenting a combined score.
+
+Compositional generalization requires more than unseen instructions. The model
+must recombine known entities, relations, skills, and constraints in
+combinations absent from training. Design contrast sets where language changes
+while the scene is fixed, the scene changes while language is fixed, and
+physical feasibility contradicts semantic plausibility. This distinguishes
+grounding from memorized co-occurrence.
+
+### Adaptation Curves
+
+For a new domain, report success as a function of target demonstrations,
+gradient updates, and wall-clock interaction. Include zero-shot performance,
+few-shot adaptation, and training from scratch. Area under this adaptation
+curve is more informative than one arbitrary budget. Track catastrophic
+forgetting on source tasks and recalibration after adaptation. A model that
+adapts quickly but destroys prior safety behavior is not generally reusable.
+""",
+    "09_language_conditioned_control": r"""
+### Grounding and Ambiguity
+
+Language-conditioned control contains at least four subproblems: reference
+resolution, goal-state inference, task decomposition, and motor execution.
+An instruction such as “put the cup beside the plate” leaves reference frame,
+distance tolerance, grasp choice, collision constraints, and final orientation
+implicit. Dataset conventions often resolve these ambiguities consistently,
+allowing a policy to succeed without representing them. Counterfactual scenes
+and clarification options are needed to test genuine grounding.
+
+A useful factorization is
+\[
+p(a\mid o,\ell)=\sum_g p(a\mid o,g)\,p(g\mid o,\ell),
+\]
+where \(g\) is an explicit or latent grounded goal. This separates language
+errors from control errors and allows interventions: replace the inferred goal
+with ground truth and measure the remaining motor gap. End-to-end models can be
+analyzed with the same logic by probing or decoding their latent goal state.
+
+### Pragmatic Evaluation
+
+Test paraphrases, negation, relational swaps, distractors, impossible
+instructions, and underspecified requests. Measure clarification quality and
+safe refusal, not only completion. Human evaluation should use blinded raters
+and a written success rubric. For interactive correction, report how many
+turns and physical actions are required to recover, and whether corrections
+generalize beyond the episode.
+""",
+    "10_embodiment_scaling_questions": r"""
+### What Can Be Shared Across Bodies?
+
+Embodiments differ in morphology, action coordinates, workspace, sensing,
+compliance, and controller semantics. Shared learning is most plausible for
+visual semantics, object state, task structure, and some end-effector-level
+motion priors. Joint torques, balance, grasp mechanics, and latency constraints
+are strongly body-specific. A scalable architecture should state where this
+boundary is represented: embodiment tokens, morphology encoders, action
+adapters, kinematic retargeting, or separate experts.
+
+One can model a canonical task-space action \(u\) and embodiment-specific
+decoder \(a=D_e(u,q)\). This creates a testable bottleneck: does the canonical
+space preserve contact and whole-body constraints, and can a new \(D_e\) be
+learned with less data than a new policy? Alternatives learn a shared latent
+without explicit task-space meaning. Compare them at fixed target-embodiment
+data, including bodies whose kinematics differ qualitatively rather than only
+different arm brands.
+
+### Scaling-Law Methodology
+
+Robot scaling curves need independent axes for model parameters \(N\), number
+of trajectories \(D\), task diversity \(K\), embodiments \(E\), and deployment
+compute \(C\). Varying all at once cannot identify the source of improvement.
+Fit curves on multiple scales, reserve out-of-mixture tasks, and report
+uncertainty over dataset resampling and seeds. Measure the point at which adding
+heterogeneous data causes interference. The scientifically important result may
+be a boundary condition where scaling stops helping, not a smooth average trend.
+""",
+}
+
+
+def research_depth(directory: str, slug: str, topic: str) -> str:
+    formalism = DOMAIN_FORMALISM[directory].strip()
+    if slug == "05_world_models_for_robotics":
+        formalism = r"""
+A world model separates state inference, dynamics, and decision making:
+\[
+z_t=E_\theta(o_{\leq t}),\qquad
+p_\phi(z_{t+1}\mid z_t,a_t),\qquad
+a_t=\Pi(z_t,g;p_\phi).
+\]
+This factorization matters because predictive accuracy and control utility are
+not identical. A model can produce sharp videos while misrepresenting contact,
+or predict a task-sufficient latent without reconstructing texture. The state
+space, prediction target, uncertainty model, planning horizon, and mechanism
+for grounding imagined trajectories in new observations are therefore part of
+the formal problem.
+""".strip()
+    vla = VLA_DEEP_DIVES.get(slug, "") if directory == "06_vla_and_embodied_foundation_models" else ""
+    return f"""
+## Formal Problem Formulation
+
+{formalism}
+
+For **{topic}**, the paper-level specification should name the random variables,
+coordinate frames, prediction horizon, and decision interface. It should also
+state assumptions that are often hidden: static versus dynamic scene,
+calibrated versus drifting sensors, known versus open-set objects, rigid versus
+deformable interactions, and whether test-time adaptation or human correction
+is allowed. These assumptions define the actual problem more precisely than the
+model name.
+
+{vla}
+
+## Experimental Design at a CVPR / Robotics Research Standard
+
+### Hypotheses and Baselines
+
+Begin with a falsifiable hypothesis, not “our model improves performance.” A
+strong hypothesis identifies a mechanism: temporal memory should improve
+performance specifically after occlusion; metric 3D state should improve
+viewpoint transfer; tactile input should help after first contact; heterogeneous
+pretraining should reduce target-domain sample complexity. Select baselines that
+isolate that mechanism: a matched-capacity model without the component, a
+classical or modular alternative, and a strong current system evaluated through
+the same observation and action interface.
+
+Match data, optimization steps, augmentations, action horizon, and deployment
+frequency wherever possible. Parameter count alone is not a sufficient control
+because frozen pretraining, context length, image resolution, and sampling steps
+change effective compute. Report training FLOPs or accelerator-hours and
+measured inference latency. When exact matching is impossible, disclose the
+asymmetry and include a resource-performance curve rather than a single point.
+
+### Splits, Leakage, and Generalization
+
+The experimental unit should be the factor intended to generalize: object
+instance, physical scene, building, operator, task template, robot, or collection
+day. Randomly splitting adjacent frames leaks appearance and state. Randomly
+splitting demonstrations from the same reset can leak trajectories. Language
+templates can leak task identity even when object instances are new. Construct
+grouped splits before training and publish the group identifiers.
+
+Report in-distribution performance separately from each held-out axis and from
+their composition. “Unseen” must say unseen in what sense. A novel object in a
+known category and pose is different from an unknown category, and an unseen
+instruction paraphrase is different from a new physical skill. For pretrained
+models, audit likely overlap with public datasets and avoid claiming strict
+zero-shot novelty when pretraining provenance is unknown.
+
+### Statistics and Reporting
+
+Closed-loop trials are Bernoulli or ordinal outcomes with substantial
+environmental variation. Report the numerator and denominator, not only a
+percentage. Include confidence intervals such as Wilson intervals for success
+rates, stratify by scene or task, and use hierarchical bootstrap when trials are
+nested within objects or environments. Run enough independent seeds to expose
+optimization variance and enough physical trials to expose deployment variance.
+Do not treat thousands of video frames from one episode as independent samples.
+
+Average success should be accompanied by worst-group performance, time to
+completion, interventions, safety violations, recovery success, and a failure
+taxonomy. Pre-register success criteria for ambiguous tasks and score videos
+blind to method when human judgment is required. Preserve failed runs and
+timeouts in the released logs.
+
+## Diagnostic Ablations and Failure Analysis
+
+Ablations should remove information or capacity in a way that tests the claimed
+causal story. Useful interventions include removing temporal context, shuffling
+language, withholding proprioception, perturbing calibration, delaying one
+modality, replacing predicted geometry with ground truth, and replacing the
+planner or controller with an oracle. Oracle studies locate the bottleneck:
+ground-truth pose tests the perception gap, ground-truth subgoals test the
+reasoning gap, and replay under a validated controller tests the action gap.
+
+Stress tests should vary lighting, clutter, occlusion, camera pose, distractors,
+reflective or transparent materials, actuator delay, and scene rearrangement.
+For each failure, record the earliest observable precursor and whether the
+system's confidence changed before the physical error. A useful taxonomy
+separates sensing failure, state-estimation failure, grounding failure, planning
+failure, control failure, and invalid evaluation assumptions. “Policy failed”
+is not an analysis.
+
+## Reproducibility Checklist
+
+- Publish exact train, validation, and test episode identifiers.
+- Record robot model, end effector, sensors, calibration procedure, and control interface.
+- State observation rate, policy rate, action horizon, executed chunk length, and latency distribution.
+- Release action normalization, coordinate-frame conventions, preprocessing, and success predicates.
+- Report model initialization, frozen modules, optimizer, schedule, augmentations, seeds, and compute.
+- Preserve per-trial outcomes, intervention logs, reset policy, exclusions, and representative failures.
+- Distinguish simulation, replay, human teleoperation, autonomous execution, and post-selected video.
+- Document licenses, privacy constraints, safety limits, and any unavailable proprietary training data.
+
+## Thesis-Level Research Questions
+
+1. Which latent variables are necessary and sufficient for {topic.lower()}, and
+   how can sufficiency be tested through interventions rather than probes alone?
+2. Under which distribution shifts does the proposed representation fail
+   gracefully, become miscalibrated, or produce confidently unsafe actions?
+3. What is gained by end-to-end learning after matching data, compute, control
+   rate, and privileged geometric information against a modular baseline?
+4. Can active perception or contact reduce uncertainty more efficiently than
+   increasing model size or demonstration count?
+5. How does performance scale with independent changes in task diversity,
+   environment diversity, embodiment diversity, and trajectory count?
+6. Which failures are detectable early enough for abstention, replanning, or
+   human assistance, and what is the cost of those safeguards?
+""".strip()
+
 
 def title(slug: str) -> str:
     return re.sub(r"^\d+_", "", slug).replace("_", " ").title().replace("Vla", "VLA").replace("Rgbd", "RGB-D").replace("Rt1", "RT-1").replace("Rt2", "RT-2").replace("Rtx", "RT-X").replace("Pi0", "pi0").replace("Gr00T", "GR00T").replace("3D", "3D").replace("4D", "4D")
@@ -427,6 +1048,8 @@ Manipulation converts millimeter-scale pose, depth, or contact errors into misse
 
 Consequently, a credible result should state the embodiment, sensors, control frequency, inference hardware, environment split, number of trials, reset policy, intervention policy, and failure taxonomy. Generalization claims should name the axis held out: objects, layouts, tasks, instructions, embodiments, dynamics, or time. Aggregating these axes into a single success number conceals where the system actually transfers.
 
+{research_depth(directory, slug, t)}
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -484,6 +1107,14 @@ def make_readme() -> str:
 > **Last Updated:** {UPDATED}
 
 This repository is a living, robotics-first research database about the transition from passive visual recognition to actionable spatial intelligence. It focuses on manipulation, navigation, 3D/4D scene understanding, multimodal sensing, vision-language-action models, world models, robot data, and closed-loop evaluation.
+
+The notes are written as research briefs rather than glossary entries. Each one
+now includes a formal problem statement, explicit assumptions, hypothesis and
+baseline design, leakage-resistant evaluation splits, statistical reporting,
+diagnostic ablations, a reproducibility checklist, and thesis-level research
+questions. Section 06 adds architecture-specific mathematical and experimental
+analysis for VLAs, action generators, world models, language grounding, and
+cross-embodiment scaling.
 
 ## What “Robotics-First CV” Means
 

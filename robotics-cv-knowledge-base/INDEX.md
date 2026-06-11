@@ -1,6 +1,6 @@
 # Research Navigation Index
 
-> **Last Updated:** 2026-06-10
+> **Last Updated:** 2026-06-11
 
 This index maps a robotics-first computer-vision survey centered on one question: **how does vision become actionable, spatial, embodied intelligence for robots operating in the real world?** Every checked file is populated with technical discussion, systems, datasets, evaluation criteria, failure modes, open problems, and reading links.
 

@@ -10,6 +10,14 @@ The database contains 96 populated research notes plus its own README and
 completion index. Frontier claims are dated and separated from independently
 reproduced evidence.
 
+The knowledge base contains more than 200,000 words. Every research note
+includes a formal problem formulation, assumptions, experimental design,
+generalization and leakage controls, statistical reporting guidance, diagnostic
+ablations, reproducibility requirements, and thesis-level research questions.
+Section 06 receives additional architecture-specific treatment of VLA
+tokenization and fusion, RT-X, open models, flow matching, diffusion policies,
+world models, language grounding, generalization, and embodiment scaling.
+
 The generated knowledge base is reproducible with:
 
 ```bash
