@@ -251,6 +251,8 @@ FRONTIER_SOURCES = [
     ("NVIDIA GR00T", "https://developer.nvidia.com/isaac/gr00t"),
 ]
 
+RECENT_UPDATES: dict[str, str] = {}
+
 TOPIC_SYSTEMS = {
     "calibration": [("Zhang calibration", 2000, "calibration", "Standard planar-target camera calibration"), ("Kalibr", 2013, "toolkit", "Camera-IMU and multi-camera calibration")],
     "depth": [("Semi-Global Matching", 2008, "stereo", "Strong classical dense correspondence"), ("RAFT-Stereo", 2021, "learned stereo", "Iterative high-accuracy disparity estimation")],
@@ -972,9 +974,20 @@ def topic_analysis(slug: str, topic: str) -> str:
     return (text + "\n\n" + "\n\n".join(additions)).strip()
 
 
-def note(directory: str, slug: str) -> str:
+def recent_updates(slug: str) -> str:
+    text = RECENT_UPDATES.get(slug, "").strip()
+    if not text:
+        return ""
+    return f"""
+## Recent Developments (Mid-2025 to October 2026)
+
+{text}
+"""
+
+
+def note_inputs(directory: str, slug: str) -> tuple[list, list, list, bool]:
+    """Return the systems rows, dataset rows, reading sources, and frontier flag for a note."""
     d = DOMAIN[directory]
-    t = title(slug)
     recent = directory == "10_frontier_2024_2026" or any(x in slug for x in ["2024_2026", "pi0", "openvla"])
     systems = list(d["systems"])
     datasets = list(d["datasets"])
@@ -990,6 +1003,13 @@ def note(directory: str, slug: str) -> str:
         ("Annual Review of Control, Robotics, and Autonomous Systems", "https://www.annualreviews.org/journal/control"),
         ("IEEE Robotics and Automation Letters", "https://www.ieee-ras.org/publications/ra-l"),
     ]
+    return systems, datasets, src, recent
+
+
+def note(directory: str, slug: str) -> str:
+    d = DOMAIN[directory]
+    t = title(slug)
+    systems, datasets, src, recent = note_inputs(directory, slug)
     systems_rows = "\n".join(f"| {n} | {y} | {ty} | {why} |" for n, y, ty, why in systems)
     data_rows = "\n".join(f"| {n} | {task} | {metric} | {why} |" for n, task, metric, why in datasets)
     reading = "\n".join(f"- [{n}]({u})" for n, u in src)
@@ -1049,7 +1069,7 @@ Manipulation converts millimeter-scale pose, depth, or contact errors into misse
 Consequently, a credible result should state the embodiment, sensors, control frequency, inference hardware, environment split, number of trials, reset policy, intervention policy, and failure taxonomy. Generalization claims should name the axis held out: objects, layouts, tasks, instructions, embodiments, dynamics, or time. Aggregating these axes into a single success number conceals where the system actually transfers.
 
 {research_depth(directory, slug, t)}
-
+{recent_updates(slug)}
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
