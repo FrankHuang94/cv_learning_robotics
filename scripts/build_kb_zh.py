@@ -96,10 +96,11 @@ def research_depth(directory: str, slug: str, topic: str) -> str:
     return fill(RESEARCH_DEPTH_TEMPLATE_ZH, FORMALISM=formalism, TOPIC=topic, VLA=vla.strip()).strip()
 
 
-def recent_updates(slug: str) -> str:
-    if not en.RECENT_UPDATES.get(slug, "").strip():
+def recent_updates(directory: str, slug: str) -> str:
+    key = f"{directory}/{slug}"
+    if not en.RECENT_UPDATES.get(key, "").strip():
         return ""
-    return f"\n{RECENT_HEADING_ZH}\n\n{RECENT_UPDATES_ZH[slug].strip()}\n"
+    return f"\n{RECENT_HEADING_ZH}\n\n{RECENT_UPDATES_ZH[key].strip()}\n"
 
 
 def system_rows(rows: list[tuple]) -> str:
@@ -130,7 +131,7 @@ def note(directory: str, slug: str) -> str:
         TOPIC_ANALYSIS=topic_analysis(slug, t),
         DIAGRAM=diagram,
         RESEARCH_DEPTH=research_depth(directory, slug, t),
-        RECENT_UPDATES=recent_updates(slug),
+        RECENT_UPDATES=recent_updates(directory, slug),
         SYSTEMS_ROWS=system_rows(systems),
         DATA_ROWS=dataset_rows(datasets),
         READING=reading,

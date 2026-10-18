@@ -394,3 +394,43 @@ SOURCE_ZH: dict[str, str] = {
     "Annual Review of Control, Robotics, and Autonomous Systems": "Annual Review of Control, Robotics, and Autonomous Systems（《控制、机器人与自主系统年度评论》）",
     "IEEE Robotics and Automation Letters": "IEEE Robotics and Automation Letters（RA-L）",
 }
+
+# October 2026 refresh: phrases for systems and benchmarks added after mid-2025.
+PHRASE_ZH.update({
+    "feed-forward 3D": "前馈式三维重建",
+    "feed-forward 4D": "前馈式四维重建",
+    "world foundation model": "世界基础模型",
+    "RL-refined VLA": "经强化学习精调的 VLA",
+    "concept segmentation": "概念分割",
+    "reasoner + VLA": "推理器 + VLA",
+    "steerable VLA": "可引导的 VLA",
+    "latent world model": "隐空间世界模型",
+    "world action model": "世界动作模型",
+    "self-supervised backbone": "自监督主干网络",
+    "distributed real-robot evaluation": "分布式真实机器人评估",
+    "long-horizon household tasks": "长时程家务任务",
+    "partial-credit Q-score": "部分得分 Q-score",
+    "pairwise preference ranking": "成对偏好排名",
+    "Queries dynamic geometry and motion for any point at any time": "可在任意时刻查询任意点的动态几何与运动",
+    "Advantage-conditioned RL from experience and interventions": "基于经验与人工干预、以优势为条件的强化学习",
+    "Fifty full-length tasks expose the long-horizon gap": "五十个完整长度任务暴露了长时程能力差距",
+    "Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy": "在 200 Hz 策略之下新增 1 kHz 的学习型全身控制器",
+    "Open model unifying physical reasoning, video generation, and actions": "统一物理推理、视频生成与动作生成的开放模型",
+    "Open humanoid policy with a Cosmos Reason planner": "以 Cosmos Reason 为规划器的开放人形机器人策略",
+    "Frozen dense features rival specialized models": "冻结的稠密特征可与专用模型相媲美",
+    "Infers cameras, depth, and point maps from many views in one pass": "单次前向即可从多视图推断相机、深度与点图",
+    "Crowd-sourced blind A/B comparisons of generalist policies": "以众包盲测 A/B 对比评估通用策略",
+    "Self-supervised video model with action-conditioned planning": "支持动作条件规划的自监督视频模型",
+    "Prompts mix subtask text, metadata, and subgoal images": "提示可混合子任务文本、元数据与子目标图像",
+    "Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control": "将具身推理规划器与 VLA 配对；第 2 版加入人形机器人全身控制",
+    "Jointly predicts video and actions; basis of the GR00T N2 preview": "联合预测视频与动作；是 GR00T N2 预览版的基础",
+    "Segments and tracks every instance of a text or exemplar concept": "分割并跟踪文本或示例所指概念的全部实例",
+})
+
+SOURCE_ZH.update({
+    "Physical Intelligence pi*0.6 (RECAP)": "Physical Intelligence pi*0.6（RECAP）论文",
+    "Gemini Robotics 1.5": "Gemini Robotics 1.5（Google DeepMind 博客）",
+    "V-JEPA 2": "V-JEPA 2 论文",
+    "RoboArena": "RoboArena 论文",
+    "NVIDIA Cosmos": "NVIDIA Cosmos 3 发布",
+})
