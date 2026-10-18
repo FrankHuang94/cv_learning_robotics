@@ -1,6 +1,6 @@
 # Language Conditioned Control
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. Language Conditioned Control must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Levels Of Generalization](08_levels_of_generalization.md), [Embodiment Scaling Questions](10_embodiment_scaling_questions.md), [Knowledge Base Index](../INDEX.md)
@@ -179,6 +179,19 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+Language is increasingly used as an intermediate control channel rather than only as a task specification.
+
+- **Gemini Robotics-ER 1.5, 1.6 and 2**
+  - They decompose instructions, call tools, track progress and coordinate multiple robots.
+  - They hand natural-language steps to a VLA.
+  - ER 1.6 (April 2026) added gauge and instrument reading developed with Boston Dynamics.
+- **π0.7 (April 2026)** accepts mixed prompts: subtask text, metadata about desired speed and quality, and subgoal images. "How to do it" becomes steerable at test time.
+- **Physical Intelligence's MEM** writes text summaries of past events as long-horizon memory.
+
+These designs make language a loggable, auditable interface between reasoning and control. However, they also inherit language-model failure modes, such as confident but wrong progress reports and plausible but unexecutable plans. Verification should therefore include grounded success detection, not only the model's own narration.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -189,6 +202,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -239,5 +257,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

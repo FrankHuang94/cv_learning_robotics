@@ -1,6 +1,6 @@
 # Long Horizon Task Execution
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Perception becomes useful only when it closes the loop: selecting goals, constraining plans, detecting contact and progress, and triggering recovery. Long Horizon Task Execution must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Bimanual And Dexterous Tasks](03_bimanual_and_dexterous_tasks.md), [Task And Motion Interface](05_task_and_motion_interface.md), [Knowledge Base Index](../INDEX.md)
@@ -146,6 +146,18 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Long-horizon memory and recovery received direct architectural attention.**
+
+- **Physical Intelligence's MEM** (March 2026) combines a short-horizon video memory with self-written text summaries, supporting tasks longer than ten minutes.
+- **Helix 02** demonstrated a four-minute, 61-action dishwasher sequence without resets.
+- **Gemini Robotics-ER 2** (July 2026) adds real-time video understanding, progress tracking and multi-robot coordination.
+
+**Evaluation evidence is less flattering.** The BEHAVIOR Challenge 2025 winner reached only about 26% partial-credit Q-score across 50 household tasks.
+
+Reports of "8-hour autonomous shifts" (Figure, May 2026) circulated mainly through secondary coverage. They should be treated as unverified until intervention and reset accounting is published.
 
 ## Key Systems / Methods / Papers
 

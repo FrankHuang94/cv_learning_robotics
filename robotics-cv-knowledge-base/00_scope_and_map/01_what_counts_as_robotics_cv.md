@@ -1,6 +1,6 @@
 # What Counts As Robotics Cv
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** This topic establishes what belongs in a robotics-first vision agenda and prevents passive-image benchmark logic from substituting for embodied evidence. What Counts As Robotics Cv must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Overview](00_overview.md), [Field Map](02_field_map.md), [Knowledge Base Index](../INDEX.md)

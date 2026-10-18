@@ -1,6 +1,6 @@
 # Human Robot Scene Understanding
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Human Robot Scene Understanding must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Deformable Object Perception](08_deformable_object_perception.md), [Failure Modes In Robot Perception](10_failure_modes_in_robot_perception.md), [Knowledge Base Index](../INDEX.md)

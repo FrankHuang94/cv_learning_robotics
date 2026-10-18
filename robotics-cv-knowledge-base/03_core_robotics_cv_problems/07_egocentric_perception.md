@@ -1,6 +1,6 @@
 # Egocentric Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Egocentric Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Deformable Object Perception](08_deformable_object_perception.md), [Semantic Mapping For Navigation](06_semantic_mapping_for_navigation.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,24 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Egocentric human data became a mainstream robot-learning resource.**
+
+- **EgoDex** (Apple, ICLR 2026): 829 hours of Vision Pro egocentric video with 3D hand tracking across 194 tasks.
+- **EgoMimic** (ICRA 2025) and **EgoZero** learn manipulation from Project Aria recordings. Meta's Aria Gen 2 glasses reached research users in 2026.
+- **Larger 2026 corpora:** EgoVerse and EgoLive report over a thousand hours each.
+
+**Industrial use**
+
+- Physical Intelligence reports that human-to-robot transfer emerges in sufficiently pretrained VLAs (December 2025).
+- Figure's Project Go-Big trains navigation from human video.
+- 1X adapts its world model on egocentric footage.
+
+**The embodiment gap remains the key research variable**
+
+The gap spans hand morphology, camera placement and the lack of force labels. Reported gains should be stratified by how much robot data was added afterwards.
 
 ## Key Systems / Methods / Papers
 

@@ -1,6 +1,6 @@
 # State Estimation And Uncertainty
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Reliable robot behavior depends on calibrated geometry, temporal estimation, uncertainty, fusion, and timing; semantic accuracy alone cannot guarantee a physically valid action. State Estimation And Uncertainty must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Motion And Temporal Perception](04_motion_and_temporal_perception.md), [Sensor Fusion](06_sensor_fusion.md), [Knowledge Base Index](../INDEX.md)

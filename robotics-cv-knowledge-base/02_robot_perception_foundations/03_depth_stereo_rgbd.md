@@ -1,6 +1,6 @@
 # Depth Stereo RGB-D
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Reliable robot behavior depends on calibrated geometry, temporal estimation, uncertainty, fusion, and timing; semantic accuracy alone cannot guarantee a physically valid action. Depth Stereo RGB-D must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Camera Models Calibration](02_camera_models_calibration.md), [Motion And Temporal Perception](04_motion_and_temporal_perception.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,21 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Foundation models for stereo and depth**
+
+- **FoundationStereo** (NVIDIA, CVPR 2025): zero-shot stereo trained on about one million curated synthetic pairs.
+- **Fast-FoundationStereo** (arXiv 2512.11130, CVPR 2026): over ten times faster at similar accuracy, through distillation, architecture search and pruning.
+- **Depth Anything 3** (ByteDance Seed, November 2025): predicts consistent depth and camera rays from any number of views with a plain transformer.
+- **MapAnything:** produces metric reconstructions from flexible combinations of images and optional geometric inputs.
+
+**Implications for robots**
+
+- For robots with stereo heads, learned stereo is now a realistic replacement for active depth sensors in many indoor settings.
+- Failure behavior on transparent, reflective and textureless surfaces must still be measured on the robot's own data.
+- Checkpoint licenses differ.
 
 ## Key Systems / Methods / Papers
 

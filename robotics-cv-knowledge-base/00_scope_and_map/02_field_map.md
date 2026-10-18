@@ -1,6 +1,6 @@
 # Field Map
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** This topic establishes what belongs in a robotics-first vision agenda and prevents passive-image benchmark logic from substituting for embodied evidence. Field Map must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [What Counts As Robotics Cv](01_what_counts_as_robotics_cv.md), [Major Debates](03_major_debates.md), [Knowledge Base Index](../INDEX.md)

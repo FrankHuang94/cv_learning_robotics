@@ -1,6 +1,6 @@
 # State Of The Field
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Frontier
 > **Why It Matters for Robotics:** This is a very recent, rapidly changing area; claims here are dated and should be distinguished from independently reproduced evidence. State Of The Field must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [2024 Breakthroughs](01_2024_breakthroughs.md), [Knowledge Base Index](../INDEX.md)
@@ -149,6 +149,33 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Research snapshot, October 18, 2026**
+
+- Hierarchical reasoner-plus-actor VLAs are standard.
+- Whole-body humanoid control is learned end to end in several industrial stacks.
+- RL fine-tuning of VLAs (RECAP, πRL, SimpleVLA-RL) is routine.
+- Video-generative world models now serve as data engines, evaluators and, in world-action models, policy backbones.
+- Open models (openpi, GR00T N1.7, X-VLA, SmolVLA, RDT2, LingBot) and LeRobot make many of these ideas reproducible.
+
+**Industry snapshot, October 18, 2026**
+
+- **Capital is at record levels.** Crunchbase counts about $18.8B in robotics venture funding in the first half of 2026 alone, more than all of 2025.
+- **Valuations are high:**
+  - Figure: $39B (September 2025).
+  - Skild AI: more than $14B (January 2026).
+  - Physical Intelligence: reported at about $11B (2026).
+- **The first humanoid makers have reached public markets:**
+  - Unitree listed on Shanghai's STAR Market on August 19, 2026, closing its first day at about 342B CNY.
+  - Agility agreed a SPAC deal.
+  - AgiBot and Galbot are preparing Hong Kong listings.
+- **Deployed units remain in the thousands and capability evidence remains mostly company-reported.**
+  - About 13,000 humanoids shipped worldwide in 2025.
+  - China's NDRC warned in November 2025 of bubble risk among more than 150 humanoid firms.
+
+**The gap.** The defining gap is between capital and demonstrations on one side, and independently measured, intervention-accounted reliability on the other.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -158,6 +185,11 @@ is not an analysis.
 | Gemini Robotics | 2025 | VLA | Extended a multimodal model toward dexterous physical action |
 | Helix | 2025 | humanoid VLA | Demonstrated asynchronous semantic and 200 Hz control |
 | pi0.5 | 2025 | VLA | Targeted unseen-home generalization with heterogeneous co-training |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| V-JEPA 2 | 2025 | latent world model | Self-supervised video model with action-conditioned planning |
+| Helix 02 | 2026 | humanoid VLA | Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy |
+| Cosmos 3 | 2026 | world foundation model | Open model unifying physical reasoning, video generation, and actions |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -168,6 +200,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | SimplerEnv | VLA evaluation | real-to-sim correlation and success | Attempts scalable policy comparison |
 | LIBERO | knowledge transfer | task success | Tests several generalization regimes |
 | BEHAVIOR-1K | household activities | task and predicate success | Moves evaluation toward long-horizon physical state change |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 
@@ -208,5 +242,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

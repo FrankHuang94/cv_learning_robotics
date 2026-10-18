@@ -1,6 +1,6 @@
 # Overview
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Embodiment determines observability, action space, control rate, data compatibility, and which visual errors become dangerous. Overview must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Robot Arms And Manipulators](01_robot_arms_and_manipulators.md), [Knowledge Base Index](../INDEX.md)

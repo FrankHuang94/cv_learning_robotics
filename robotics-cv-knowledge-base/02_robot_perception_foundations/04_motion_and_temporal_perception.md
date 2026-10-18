@@ -1,6 +1,6 @@
 # Motion And Temporal Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Reliable robot behavior depends on calibrated geometry, temporal estimation, uncertainty, fusion, and timing; semantic accuracy alone cannot guarantee a physically valid action. Motion And Temporal Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Depth Stereo RGB-D](03_depth_stereo_rgbd.md), [State Estimation And Uncertainty](05_state_estimation_and_uncertainty.md), [Knowledge Base Index](../INDEX.md)

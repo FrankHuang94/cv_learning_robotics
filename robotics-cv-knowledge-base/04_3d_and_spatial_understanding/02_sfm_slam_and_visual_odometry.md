@@ -1,6 +1,6 @@
 # Sfm Slam And Visual Odometry
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. Sfm Slam And Visual Odometry must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Point Clouds Voxels Meshes](01_point_clouds_voxels_meshes.md), [Neural Scene Representations](03_neural_scene_representations.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,19 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Learned reconstruction priors entered SLAM directly**
+
+- **MASt3R-SLAM** (CVPR 2025): real-time monocular dense SLAM at about 15 FPS on top of the MASt3R prior. It assumes no parametric camera model, and adds loop closure and global optimization.
+- **CUT3R** (CVPR 2025): maintains a persistent recurrent state that outputs online metric point maps for static and dynamic scenes.
+- **VGGT** and **π³** provide camera estimates in a single feed-forward pass that can initialize or replace classical structure-from-motion for short sequences.
+- **2026 streaming variants:** a wave of preprints targets long sequences and odometry, but these remain arXiv-only.
+
+**Open questions for robotics**
+
+Long-horizon drift, relocalization and map maintenance under scene change still favor systems with explicit optimization back ends. Benchmarks should report both accuracy and failure frequency over long trajectories.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -157,6 +170,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 | DROID-SLAM | 2021 | learned SLAM | Dense recurrent bundle adjustment |
 | iMAP | 2021 | neural SLAM | Online implicit scene mapping |
 

@@ -1,6 +1,6 @@
 # Major Debates
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** This topic establishes what belongs in a robotics-first vision agenda and prevents passive-image benchmark logic from substituting for embodied evidence. Major Debates must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Field Map](02_field_map.md), [Knowledge Base Index](../INDEX.md)

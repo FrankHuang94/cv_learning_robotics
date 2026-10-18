@@ -1,6 +1,6 @@
 # Research Navigation Index
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 
 This index maps a robotics-first computer-vision survey centered on one question: **how does vision become actionable, spatial, embodied intelligence for robots operating in the real world?** Every checked file is populated with technical discussion, systems, datasets, evaluation criteria, failure modes, open problems, and reading links.
 
@@ -11,7 +11,7 @@ This index maps a robotics-first computer-vision survey centered on one question
 3. Study the task interface in [Core Task Map](03_core_robotics_cv_problems/00_task_map.md).
 4. Move to [3D and Spatial Understanding](04_3d_and_spatial_understanding/00_overview.md).
 5. Read the [Embodied Foundation Model Roadmap](06_vla_and_embodied_foundation_models/00_overview_roadmap.md).
-6. Finish with [State of the Field](10_frontier_2024_2026/00_state_of_the_field.md) and [Future Roadmaps](10_frontier_2024_2026/07_future_roadmaps.md).
+6. Finish with [State of the Field](10_frontier_2024_2026/00_state_of_the_field.md), [2026 Current Frontier](10_frontier_2024_2026/03_2026_current_frontier.md), [Industry Status 2026](10_frontier_2024_2026/08_industry_status_2026.md), and [Future Roadmaps](10_frontier_2024_2026/07_future_roadmaps.md).
 
 ## Most Important Files
 
@@ -26,7 +26,9 @@ This index maps a robotics-first computer-vision survey centered on one question
 
 ## Latest Frontier Topics
 
-The 2024–2026 notes track open VLAs, flow and diffusion action heads, heterogeneous co-training, humanoid whole-body policies, 3D Gaussian scene memory, action-conditioned world models, spatial intelligence, and visuotactile control. These files explicitly mark rapidly changing claims and should be refreshed from primary sources.
+The 2024–2026 notes track open VLAs, flow and diffusion action heads, heterogeneous co-training, humanoid whole-body policies, 3D Gaussian scene memory, action-conditioned world models, spatial intelligence, and visuotactile control. The October 2026 refresh adds RL fine-tuning of VLAs (RECAP, piRL), reasoner-plus-actor hierarchies (Gemini Robotics 1.5 and 2, GR00T N1.6), world action models (DreamZero, Cosmos 3), latent world models (V-JEPA 2, RoboJEPA), feed-forward 3D/4D reconstruction (VGGT, D4RT), concept segmentation (SAM 3), arena-style evaluation (RoboArena), and the 2026 industry landscape. These files explicitly mark rapidly changing claims and should be refreshed from primary sources.
+
+A Simplified Chinese reference translation of every note is available in [`Chinese translation/`](../Chinese%20translation/INDEX.md).
 
 ## Core Debates
 
@@ -160,6 +162,7 @@ This is a very recent, rapidly changing area; claims here are dated and should b
 - [x] [World Model Vs VLA](10_frontier_2024_2026/05_world_model_vs_vla.md)
 - [x] [Robotics Cv Open Problems](10_frontier_2024_2026/06_robotics_cv_open_problems.md)
 - [x] [Future Roadmaps](10_frontier_2024_2026/07_future_roadmaps.md)
+- [x] [Industry Status 2026](10_frontier_2024_2026/08_industry_status_2026.md)
 ### `11_datasets_papers_labs/`
 A research database is useful only if it distinguishes landmark evidence, reproducible resources, institutional incentives, and benchmark blind spots.
 

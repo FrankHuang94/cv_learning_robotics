@@ -1,6 +1,6 @@
 # Rgb Depth Tactile Proprioception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Vision is informative before contact, but touch, force, proprioception, depth, and language resolve ambiguities that RGB alone cannot observe. Rgb Depth Tactile Proprioception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Overview](00_overview.md), [Visuotactile Learning](02_visuotactile_learning.md), [Knowledge Base Index](../INDEX.md)
@@ -155,6 +155,8 @@ is not an analysis.
 | GelSight | 2017 | tactile sensor | Captures high-resolution contact geometry |
 | ViViDex | 2023 | visuotactile policy | Uses human video and tactile sensing for dexterity |
 | Grounding DINO | 2023 | open-set detector | Grounds free-form text in images |
+| DINOv3 | 2025 | self-supervised backbone | Frozen dense features rival specialized models |
+| SAM 3 | 2025 | concept segmentation | Segments and tracks every instance of a text or exemplar concept |
 | Semi-Global Matching | 2008 | stereo | Strong classical dense correspondence |
 | RAFT-Stereo | 2021 | learned stereo | Iterative high-accuracy disparity estimation |
 

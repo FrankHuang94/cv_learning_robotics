@@ -1,6 +1,6 @@
 # Conference Map
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** A research database is useful only if it distinguishes landmark evidence, reproducible resources, institutional incentives, and benchmark blind spots. Conference Map must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Open Source Ecosystem](03_open_source_ecosystem.md), [Knowledge Base Index](../INDEX.md)
@@ -145,6 +145,30 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Awards and highlights, mid-2025 to October 2026**
+
+- **CoRL 2025 (Seoul)**
+  - Best Papers: UniFP (unified position and force control for legged loco-manipulation) and Fabrica (dual-arm multi-part assembly).
+  - Best Student Paper: VideoMimic (visual imitation for contextual humanoid control).
+- **NeurIPS 2025:** hosted the first BEHAVIOR Challenge.
+- **ICRA 2026 (Vienna)**
+  - Best Conference Paper: OmniRetarget, as reported by IEEE RAS coverage.
+  - Best Paper on Robot Learning: "Do You Know Where Your Camera Is?"
+- **CVPR 2026 (Denver)**
+  - Best Paper: D4RT.
+  - Best Student Paper: "Native and Compact Structured Latents for 3D Generation" (TRELLIS.2).
+  - SAM 3D received an honorable mention.
+  - The Embodied AI workshop took world models as its theme.
+- **RSS 2025 (Los Angeles):** Outstanding Paper went to FEAST.
+- **ICCV 2025:** the Marr Prize went to BrickGPT.
+- **CVPR 2025:** Best Paper went to VGGT, a feed-forward multi-view geometry model. MegaSaM and Navigation World Models received honorable mentions.
+- **RSS 2026 (Sydney)**
+  - Outstanding Paper: FlashSAC (fast, stable off-policy RL for high-dimensional control).
+  - Outstanding Systems Paper: NeuralActuator, as reported.
+- **CoRL 2026:** takes place in Austin, November 9–12, 2026, after this snapshot.
 
 ## Key Systems / Methods / Papers
 

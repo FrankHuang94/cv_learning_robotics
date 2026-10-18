@@ -1,6 +1,6 @@
 # Affordance Detection
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Affordance Detection must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Pose Estimation And 6D Pose](02_pose_estimation_and_6d_pose.md), [Grasp Perception](04_grasp_perception.md), [Knowledge Base Index](../INDEX.md)

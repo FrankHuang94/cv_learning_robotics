@@ -1,6 +1,6 @@
 # Learning Based Robot Vision
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** The history matters because today's foundation policies inherit unresolved assumptions from calibration, stereo, SLAM, recognition, and behavior cloning. Learning Based Robot Vision must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Classical Robot Vision](01_classical_robot_vision.md), [RGB-D And 3D Perception](03_rgbd_and_3d_perception.md), [Knowledge Base Index](../INDEX.md)

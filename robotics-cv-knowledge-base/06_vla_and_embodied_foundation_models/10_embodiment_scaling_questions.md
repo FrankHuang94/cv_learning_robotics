@@ -1,6 +1,6 @@
 # Embodiment Scaling Questions
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. Embodiment Scaling Questions must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Language Conditioned Control](09_language_conditioned_control.md), [Knowledge Base Index](../INDEX.md)
@@ -179,6 +179,34 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**New scaling evidence, much of it company-reported**
+
+- **Generalist AI**
+  - GEN-0 (November 2025) reports power-law relations between real-world pretraining data (more than 270,000 hours) and downstream performance.
+  - It also reports an apparent capacity threshold: smaller models "ossify".
+  - GEN-1 (April 2026) claims more than 500,000 hours.
+- **RoboJEPA** (October 2026) reports compute power laws for latent world-model error across 12 embodiments.
+- **Skild Brain** (July 2025) pursues an "omni-bodied" model pretrained on simulation and human video across quadrupeds, humanoids and arms.
+- **X-VLA** encodes embodiment through learned soft prompts.
+
+**Human video as a scaling resource**
+
+Several groups now treat egocentric human video as a primary data source:
+
+- Physical Intelligence's human-to-robot transfer (December 2025);
+- Figure's Project Go-Big;
+- reports from Tesla's Optimus team.
+
+This partly decouples data growth from robot-hours.
+
+**What remains unanswered**
+
+- Independent replication of robot scaling laws.
+- Controlled separation of data volume, diversity and embodiment.
+- Whether the measured exponents survive a change of evaluation protocol.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -189,6 +217,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -239,5 +272,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

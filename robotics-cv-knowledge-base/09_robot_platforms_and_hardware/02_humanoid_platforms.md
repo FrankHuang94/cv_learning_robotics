@@ -1,6 +1,6 @@
 # Humanoid Platforms
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Embodiment determines observability, action space, control rate, data compatibility, and which visual errors become dangerous. Humanoid Platforms must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Robot Arms And Manipulators](01_robot_arms_and_manipulators.md), [Mobile Robots And Navigation Stacks](03_mobile_robots_and_navigation_stacks.md), [Knowledge Base Index](../INDEX.md)
@@ -149,6 +149,40 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+The humanoid platform landscape as of October 2026. Unless labelled otherwise, figures are company statements or press reports.
+
+**United States and Europe**
+
+- **Figure 03** (October 2025) was designed for volume manufacturing and Helix. BMW announced deployment at Spartanburg in June 2026.
+- **Boston Dynamics production electric Atlas** (CES, January 2026)
+  - About 56 DoF.
+  - All 2026 units are committed to Hyundai's Robot Metaplant Application Center and Google DeepMind.
+  - Hyundai plans capacity for 30,000 robots per year by 2028, with Atlas reaching its Georgia plant in 2028.
+- **Apptronik Apollo 2** is the reference platform for Gemini Robotics 2. Apptronik extended its Series A by $520M in February 2026.
+- **Agility Digit** is in multi-site logistics work. Agility agreed in June 2026 to go public through a SPAC, claiming more than $300M in multi-year Digit orders.
+- **1X NEO** opened consumer preorders in October 2025 ($20,000 or $499 per month). Its Hayward factory opened in April 2026. No independently confirmed consumer deliveries had been reported by early October 2026.
+- **Tesla Optimus**
+  - Tesla is converting the Fremont Model S/X line to Optimus production.
+  - First builds go to internal data collection.
+  - Optimus V3 had not been publicly unveiled by mid-October 2026.
+- **NVIDIA's Isaac GR00T Reference Humanoid** (June 2026) packages a Unitree H2, Sharpa hands and Jetson Thor for research.
+
+**China**
+
+- **Unitree** launched the R1 at 39,900 CNY (July 2025) and the full-size H2 (October 2025).
+- Analyst firm Omdia counted about 13,000 humanoids shipped worldwide in 2025, roughly 90% from Chinese companies. Leaders:
+  - AgiBot: about 5,200.
+  - Unitree: 4,200 by Omdia's count, or more than 5,500 delivered according to its own prospectus.
+  - UBTech: about 1,000.
+- Most Chinese units went to research, education, retail and entertainment rather than factory labor.
+- **XPeng** plans IRON deliveries in the first half of 2027.
+
+**Assessment**
+
+Volumes remain small relative to announced capacities. Visual perception on these platforms has converged on multi-camera RGB heads, wrist or palm cameras, depth for navigation, and increasingly tactile fingertips.
 
 ## Key Systems / Methods / Papers
 

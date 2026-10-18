@@ -1,6 +1,6 @@
 # Must Read Papers
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** A research database is useful only if it distinguishes landmark evidence, reproducible resources, institutional incentives, and benchmark blind spots. Must Read Papers must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Must Know Datasets](00_must_know_datasets.md), [Major Labs And Companies](02_major_labs_and_companies.md), [Knowledge Base Index](../INDEX.md)
@@ -145,6 +145,56 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+Must-read additions for mid-2025 to October 2026, grouped by theme.
+
+**Policies and VLAs**
+
+- **π\*0.6 / RECAP** (arXiv 2511.14759): RL from experience and corrections for VLAs.
+- **TRI, "A Careful Examination of Large Behavior Models for Multitask Dexterous Manipulation"** (arXiv 2507.05331).
+- **SmolVLA** (arXiv 2506.01844).
+- **X-VLA** (arXiv 2510.10274, ICLR 2026).
+- **RDT2** (arXiv 2602.03310, ICML 2026).
+- **MEM: multi-scale embodied memory** (arXiv 2603.03596).
+
+**World models**
+
+- **V-JEPA 2** (arXiv 2506.09985): self-supervised video world model with action-conditioned planning.
+- **Dreamer 4** (arXiv 2509.24527).
+- **Ctrl-World** (arXiv 2510.10125, ICLR 2026).
+- **Evaluating Gemini Robotics policies in a Veo world simulator** (arXiv 2512.10675).
+- **DreamZero: World Action Models are Zero-shot Policies** (arXiv 2602.15922).
+- **RoboJEPA** (arXiv 2610.10515).
+
+**RL for VLAs**
+
+- **SimpleVLA-RL** (arXiv 2509.09674).
+- **πRL** (arXiv 2510.25889).
+
+**Evaluation**
+
+- **RoboArena** (arXiv 2506.18123, CoRL 2025).
+
+**Award-winning papers**
+
+- **OmniRetarget** (reported as ICRA 2026 Best Conference Paper).
+- **"Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning"** (ICRA 2026 Best Paper on Robot Learning).
+- **D4RT** (CVPR 2026 Best Paper): feed-forward 4D reconstruction.
+
+**Perception and geometry**
+
+- **VGGT** (CVPR 2025 Best Paper).
+- **MASt3R-SLAM** (CVPR 2025).
+- **CUT3R** (CVPR 2025).
+- **π³** (ICLR 2026).
+- **MapAnything** (3DV 2026).
+- **Depth Anything 3** (arXiv 2511.10647).
+- **FoundationStereo** (CVPR 2025).
+- **DINOv3** (Meta, August 2025).
+- **SAM 3: Segment Anything with Concepts** (ICLR 2026).
+- **EgoDex** (ICLR 2026).
 
 ## Key Systems / Methods / Papers
 

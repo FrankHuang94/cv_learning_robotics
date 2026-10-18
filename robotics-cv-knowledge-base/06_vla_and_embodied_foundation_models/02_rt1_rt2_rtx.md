@@ -1,6 +1,6 @@
 # RT-1 RT-2 RT-X
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. RT-1 RT-2 RT-X must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [VLA Model Architectures](01_vla_model_architectures.md), [Openvla Octo And Open Models](03_openvla_octo_and_open_models.md), [Knowledge Base Index](../INDEX.md)
@@ -191,6 +191,24 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+The RT lineage has been absorbed into Google DeepMind's Gemini Robotics family:
+
+- Gemini Robotics and Gemini Robotics-ER in March 2025.
+- On-Device in June 2025.
+- 1.5 in September 2025.
+- ER 1.6 in April 2026.
+- Gemini Robotics 2, ER 2 and On-Device 2 in July 2026.
+
+The research questions RT-X opened are still live, and they now appear in different forms:
+
+- **Can co-training transfer across embodiments?** The 2025–2026 evidence is mixed but more favorable.
+  - Gemini Robotics 1.5 reports transferring motions learned on one robot to others.
+  - X-VLA and GR00T use embodiment-specific prompts or action modules.
+  - Generalist AI's GEN-0 report (November 2025) claims power-law relations between pretraining data and post-training performance at more than 270,000 hours of real manipulation data. The figure is company-reported, not independently replicated.
+- **How should heterogeneous actions be normalized?** Action normalization remains unsolved as a universal interface. Recent open models still ship embodiment-specific heads, statistics or prompts.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -201,6 +219,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -251,5 +274,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

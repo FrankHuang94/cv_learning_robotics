@@ -1,6 +1,6 @@
 # Open Source Ecosystem
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** A research database is useful only if it distinguishes landmark evidence, reproducible resources, institutional incentives, and benchmark blind spots. Open Source Ecosystem must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Major Labs And Companies](02_major_labs_and_companies.md), [Conference Map](04_conference_map.md), [Knowledge Base Index](../INDEX.md)
@@ -145,6 +145,32 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Open-source additions since mid-2025**
+
+- **Models:**
+  - `openpi`: π0, π0-FAST and π0.5 in JAX and PyTorch.
+  - SmolVLA.
+  - GR00T N1.5, N1.6 and N1.7. N1.7 is commercially licensable; check each checkpoint's license.
+  - X-VLA.
+  - RDT2.
+  - Galaxea G0.
+  - LingBot-VLA.
+  - MolmoAct.
+  - Unitree's UnifoLM-WMA-0.
+  - V-JEPA 2.
+  - Cosmos Predict 2.5 and Cosmos 3.
+- **Tooling:**
+  - LeRobot v0.6.0 with world-model policies, reward models, `lerobot-eval` and DAgger rollouts.
+  - RLinf for large-scale embodied RL.
+  - Newton physics.
+  - MuJoCo Playground and MuJoCo Warp.
+  - ManiSkill3.
+- **Evaluation:** community arenas RoboArena and RoboChallenge.
+
+**Licenses.** Licensing is now a practical research variable. Several model families mix Apache-2.0 code with non-commercial weights, and dataset licenses have changed after release.
 
 ## Key Systems / Methods / Papers
 

@@ -1,6 +1,6 @@
 # Closed Loop Robot Vision
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Perception becomes useful only when it closes the loop: selecting goals, constraining plans, detecting contact and progress, and triggering recovery. Closed Loop Robot Vision must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Planning With Visual Representations](06_planning_with_visual_representations.md), [Knowledge Base Index](../INDEX.md)

@@ -1,6 +1,6 @@
 # Robot Arms And Manipulators
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Embodiment determines observability, action space, control rate, data compatibility, and which visual errors become dangerous. Robot Arms And Manipulators must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Overview](00_overview.md), [Humanoid Platforms](02_humanoid_platforms.md), [Knowledge Base Index](../INDEX.md)

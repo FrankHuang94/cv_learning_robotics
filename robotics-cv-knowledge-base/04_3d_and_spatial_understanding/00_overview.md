@@ -1,6 +1,6 @@
 # Overview
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. Overview must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Point Clouds Voxels Meshes](01_point_clouds_voxels_meshes.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,26 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Feed-forward geometry became the dominant trend in 3D vision for robotics.**
+
+Single networks now infer cameras, depth, point maps and tracks from one to hundreds of images in seconds:
+
+- **VGGT:** CVPR 2025 Best Paper.
+- **CUT3R:** a recurrent model with a persistent state.
+- **π³:** permutation-equivariant, so results do not depend on input order.
+- **MapAnything.**
+- **Depth Anything 3.**
+- **VGGT-Ω** (CVPR 2026).
+
+**From static to dynamic scenes.** D4RT (CVPR 2026 Best Paper) extends this to dynamic 4D reconstruction with a query decoder that answers for any point at any time.
+
+**What robots gain, and what remains open**
+
+- These models give robots fast spatial front ends without per-scene optimization.
+- Metric scale, uncertainty, and online updating after robot interaction remain open.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -157,6 +177,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 

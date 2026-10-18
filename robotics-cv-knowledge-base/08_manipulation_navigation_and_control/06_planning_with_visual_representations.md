@@ -1,6 +1,6 @@
 # Planning With Visual Representations
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Perception becomes useful only when it closes the loop: selecting goals, constraining plans, detecting contact and progress, and triggering recovery. Planning With Visual Representations must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Task And Motion Interface](05_task_and_motion_interface.md), [Closed Loop Robot Vision](07_closed_loop_robot_vision.md), [Knowledge Base Index](../INDEX.md)

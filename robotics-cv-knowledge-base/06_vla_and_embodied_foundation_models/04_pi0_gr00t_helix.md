@@ -1,6 +1,6 @@
 # pi0 GR00T Helix
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. pi0 GR00T Helix must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Openvla Octo And Open Models](03_openvla_octo_and_open_models.md), [World Models For Robotics](05_world_models_for_robotics.md), [Knowledge Base Index](../INDEX.md)
@@ -199,6 +199,37 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Physical Intelligence**
+
+- **π\*0.6 with RECAP** (November 2025, arXiv 2511.14759). RECAP stands for RL with Experience and Corrections via Advantage-conditioned Policies.
+  - Method: offline-RL pretraining of the generalist VLA; a value function labels advantages over all data; the policy is conditioned on those advantages; the loop iterates on autonomous rollouts and teleoperator interventions.
+  - Reported results: more than twice the throughput and roughly half the failure rate on laundry folding, box assembly and espresso making, with multi-hour continuous runs.
+- **Human-to-robot transfer** (December 2025): learning from egocentric human video emerges once robot pretraining is large enough.
+- **MEM** (March 2026): memory module.
+- **RL Token** (March 2026): enables fast online RL.
+- **π0.7** (April 2026): a "steerable" generalist that the company reports matches its RL-tuned π\*0.6 specialists.
+- **Pi API beta** (October 13, 2026): hosted fine-tuning and inference.
+
+**NVIDIA GR00T**
+
+- **N1.5** (May 2025): trained partly on synthetic "GR00T-Dreams" trajectories.
+- **N1.6** (December 2025): 3B parameters, with Cosmos Reason as the reasoning module and added whole-body teleoperation data.
+- **N1.7** (early access at GTC in March 2026, commercially licensable).
+- **GR00T N2 preview**, built on the DreamZero world action model and promised by the end of 2026. NVIDIA claims more than twice the success of leading VLAs on new tasks and environments; this is a company claim.
+- **Isaac GR00T Reference Humanoid** (June 2026): a Unitree H2 body, Sharpa hands and Jetson Thor compute.
+
+**Figure**
+
+- **Figure 03** (October 2025): a hardware redesign around Helix, with palm cameras, tactile fingertips and wireless charging.
+- **Helix 02** (February 2026):
+  - adds the 1 kHz S0 whole-body controller;
+  - was shown loading and unloading a dishwasher autonomously for four minutes (61 actions) without resets.
+- **BMW deployment** (BMW press release, June 25, 2026): Figure 03 robots will take on logistics sequencing at the Spartanburg plant. This follows a Figure 02 pilot that BMW says supported production of more than 30,000 X3 vehicles.
+
+Unit counts and multi-hour shift claims beyond these sources remain company-reported or secondary.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -209,6 +240,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -259,5 +295,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

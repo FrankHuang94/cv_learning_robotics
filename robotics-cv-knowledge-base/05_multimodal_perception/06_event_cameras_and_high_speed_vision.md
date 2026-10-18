@@ -1,6 +1,6 @@
 # Event Cameras And High Speed Vision
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Vision is informative before contact, but touch, force, proprioception, depth, and language resolve ambiguities that RGB alone cannot observe. Event Cameras And High Speed Vision must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Documentation Of Scene Memory](05_documentation_of_scene_memory.md), [Knowledge Base Index](../INDEX.md)
@@ -147,6 +147,16 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Event vision is beginning to meet foundation models**
+
+- **New benchmarks:** EventBench (arXiv 2511.18448), which evaluates multimodal models on event streams.
+- **Datasets:** the MTevent 6D-pose dataset, on which frame-based FoundationPose performs poorly.
+- **Preprints:** 2026 work proposing event-conditioned VLAs, plus representation surveys.
+
+**What is still missing.** Mainstream robot foundation models remain frame-based. The open problems listed above are unchanged: event tokenization, pretraining at scale, and low-power deployment.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -155,6 +165,8 @@ is not an analysis.
 | GelSight | 2017 | tactile sensor | Captures high-resolution contact geometry |
 | ViViDex | 2023 | visuotactile policy | Uses human video and tactile sensing for dexterity |
 | Grounding DINO | 2023 | open-set detector | Grounds free-form text in images |
+| DINOv3 | 2025 | self-supervised backbone | Frozen dense features rival specialized models |
+| SAM 3 | 2025 | concept segmentation | Segments and tracks every instance of a text or exemplar concept |
 | E2VID | 2019 | event reconstruction | Reconstructs intensity video from events |
 | UltimateSLAM | 2018 | event SLAM | Event-frame-inertial odometry |
 

@@ -1,6 +1,6 @@
 # Pose Estimation And 6D Pose
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Pose Estimation And 6D Pose must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Object Detection For Robotics](01_object_detection_for_robotics.md), [Affordance Detection](03_affordance_detection.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,16 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**No widely adopted successor to FoundationPose** had emerged by October 2026. Model-based novel-object pose and tracking remain the reference approach.
+
+**Adjacent developments**
+
+- **SAM 3D Objects** (Meta, November 2025; CVPR 2026 honorable mention) reconstructs objects and scenes from a single image. This enables mesh-free pipelines in which a model is generated on the fly before pose estimation.
+- **Feed-forward multi-view geometry** (VGGT, MapAnything) supplies camera poses and point maps that can initialize object pose.
+- **Event-camera 6D pose (MTevent, CVPR 2025 workshop):** RGB FoundationPose scores very low on its high-speed sequences. This exposes a motion-blur and high-dynamic-range gap that frame-based pose methods have not closed.
 
 ## Key Systems / Methods / Papers
 

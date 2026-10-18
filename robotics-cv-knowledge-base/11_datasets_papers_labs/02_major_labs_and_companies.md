@@ -1,6 +1,6 @@
 # Major Labs And Companies
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** A research database is useful only if it distinguishes landmark evidence, reproducible resources, institutional incentives, and benchmark blind spots. Major Labs And Companies must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Must Read Papers](01_must_read_papers.md), [Open Source Ecosystem](03_open_source_ecosystem.md), [Knowledge Base Index](../INDEX.md)
@@ -145,6 +145,37 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+Industry status as of October 2026. Funding figures are as reported at announcement; valuations are post-money unless noted.
+
+| Organization | Focus | Latest verified milestones |
+|--------------|-------|----------------------------|
+| Physical Intelligence | VLA foundation models | π\*0.6 (Nov 2025), π0.7 (Apr 2026), API beta (Oct 2026); $600M at ~$5.6B (Nov 2025); ~$11B round reported in 2026 |
+| Google DeepMind | Gemini Robotics VLA + ER | 1.5 (Sep 2025), ER 1.6 (Apr 2026), Gemini Robotics 2 / ER 2 / On-Device 2 (Jul 2026); partners include Apptronik, Boston Dynamics, Agile Robots |
+| NVIDIA | Compute, simulation, GR00T, Cosmos | Jetson Thor GA (Aug 2025); GR00T N1.6/N1.7, N2 preview; Cosmos 3 (Jun 2026); Newton physics (Linux Foundation, Sep 2025), Isaac Lab 3.0 beta (Mar 2026), Isaac Sim 6.0 (Jun 2026) |
+| Figure AI | Humanoids + Helix | $39B Series C (Sep 2025); Figure 03 (Oct 2025); Helix 02 (Feb 2026); BMW Spartanburg deployment (Jun 2026) |
+| Tesla | Optimus | Fremont line conversion; first units to internal data collection; V3 not yet unveiled (Oct 2026) |
+| Boston Dynamics / Hyundai | Electric Atlas | Production Atlas (Jan 2026); TRI LBM whole-body demo (Aug 2025); Hyundai target of 30k robots/yr capacity by 2028 |
+| Skild AI | Omni-bodied robot brain | Skild Brain (Jul 2025); ~$1.4B at >$14B (Jan 2026) |
+| Generalist AI | Large-scale real-world data models | GEN-0 (Nov 2025), GEN-1 (Apr 2026); $400M at ~$2B (Jun 2026) |
+| 1X | NEO home humanoid, world model | Preorders (Oct 2025); world model (Jan 2026); Hayward factory (Apr 2026) |
+| Agility Robotics | Digit logistics humanoid | SPAC agreement at $2.5B pre-money (Jun 2026) |
+| Apptronik | Apollo humanoid | $520M Series A extension (Feb 2026); Gemini Robotics 2 platform |
+| Unitree | Low-cost humanoids/quadrupeds | R1 (Jul 2025), H2 (Oct 2025); STAR Market IPO (Aug 19, 2026) |
+| AgiBot | Humanoids, GO-series models | Omdia #1 in 2025 shipments; GO-2 (Apr 2026); Hong Kong IPO process (Jul 2026) |
+| UBTech | Walker S industrial humanoids | 1,079 full-size humanoids sold in 2025 (annual results) |
+| Toyota Research Institute | Large behavior models | LBM study (Jul 2025); Atlas collaboration |
+| Meta FAIR / AMI Labs | Latent world models | V-JEPA 2 (Jun 2025); AMI Labs $1.03B seed (Mar 2026) |
+| Hugging Face | Open tooling | SmolVLA (Jun 2025); LeRobot v0.6.0 (Jul 2026) |
+
+Other notable moves:
+
+- SoftBank agreed to acquire ABB Robotics for $5.375B (October 2025; no closing announcement had been found).
+- Mobileye agreed to acquire Mentee Robotics for about $900M (January 2026).
+- Microsoft entered robotics with Rho-alpha (January 2026).
+- Amazon passed one million deployed robots and released the DeepFleet coordination model (July 2025).
 
 ## Key Systems / Methods / Papers
 

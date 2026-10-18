@@ -1,6 +1,6 @@
 # Self Supervised Robot Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Robot learning is constrained less by raw model capacity than by expensive action-labeled trajectories, inconsistent embodiments, sparse failures, and weak evaluation. Self Supervised Robot Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Evaluation And Benchmarks](08_evaluation_and_benchmarks.md), [Synthetic Data And Video Data](06_synthetic_data_and_video_data.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,16 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Self-supervised visual pretraining reached new scale**
+
+- **DINOv3** (August 2025): a 7B ViT trained on 1.7B images.
+- **V-JEPA 2** (June 2025): video self-supervised learning that also supports action-conditioned planning after a small amount of robot video.
+- **RoboJEPA** (October 2026): scales latent prediction across 12 embodiments with power-law behavior.
+
+**Shared lesson.** Self-supervised features transfer well to robot perception. Executable competence still requires action-labeled data or interaction.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -167,6 +177,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | DROID | in-the-wild manipulation | downstream success | Diverse scenes, tasks, and operators |
 | BridgeData V2 | language-conditioned manipulation | policy success | Broad tabletop skills |
 | RoboCasa | simulated household manipulation | task success | Large procedural scenes and tasks |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 

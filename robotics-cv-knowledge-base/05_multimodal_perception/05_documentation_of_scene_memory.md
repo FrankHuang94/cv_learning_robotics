@@ -1,6 +1,6 @@
 # Documentation Of Scene Memory
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Vision is informative before contact, but touch, force, proprioception, depth, and language resolve ambiguities that RGB alone cannot observe. Documentation Of Scene Memory must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Open Vocabulary Robot Perception](04_open_vocabulary_robot_perception.md), [Event Cameras And High Speed Vision](06_event_cameras_and_high_speed_vision.md), [Knowledge Base Index](../INDEX.md)
@@ -155,6 +155,8 @@ is not an analysis.
 | GelSight | 2017 | tactile sensor | Captures high-resolution contact geometry |
 | ViViDex | 2023 | visuotactile policy | Uses human video and tactile sensing for dexterity |
 | Grounding DINO | 2023 | open-set detector | Grounds free-form text in images |
+| DINOv3 | 2025 | self-supervised backbone | Frozen dense features rival specialized models |
+| SAM 3 | 2025 | concept segmentation | Segments and tracks every instance of a text or exemplar concept |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 

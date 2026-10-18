@@ -1,6 +1,6 @@
 # World Models For Robotics
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. World Models For Robotics must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [pi0 GR00T Helix](04_pi0_gr00t_helix.md), [Diffusion Policy And Action Generation](06_diffusion_policy_and_action_generation.md), [Knowledge Base Index](../INDEX.md)
@@ -193,6 +193,46 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+The period from mid-2025 to October 2026 produced the first credible evidence that world models can serve robot control and evaluation, not just visualization. Performance figures below are the authors' or companies' own unless noted.
+
+**Latent-space predictors**
+
+- **V-JEPA 2 / V-JEPA 2-AC** (Meta, June 2025, arXiv 2506.09985)
+  - A 1.2B video encoder pretrained on more than a million hours of video.
+  - An action-conditioned predictor trained on under 62 hours of DROID video.
+  - Planning by cross-entropy-method model-predictive control toward goal images, which achieved zero-shot pick-and-place in new labs.
+- **RoboJEPA** (arXiv 2610.10515, October 2026)
+  - Scales such predictors to 8B parameters on about 15,000 hours from 12 embodiments.
+  - Reports that latent "imagination error" follows a power law in compute and correlates with real planning success.
+- **AMI Labs**, founded by Yann LeCun, raised a $1.03B seed (March 2026) to build representation-space world models.
+
+**Interactive generative worlds**
+
+- **Genie 3** (Google DeepMind, August 2025): real-time interactive generation at 24 fps and 720p with minutes of consistency.
+- **Project Genie** (January 2026): consumer access, later extended with Street View–grounded scenes.
+- **Dreamer 4** (arXiv 2509.24527): trained agents entirely inside an offline world model and obtained Minecraft diamonds. It is pitched as a template for robotics, where online RL is unsafe.
+
+**World models for policy evaluation**
+
+- **Ctrl-World** (arXiv 2510.10125, ICLR 2026)
+  - A multi-view, action-conditioned DROID world model.
+  - Ranks policies without real rollouts.
+  - Fine-tuning on imagined successes raised novel-instruction success from 38.7% to 83.4%.
+- **Google DeepMind's Veo-based evaluator** (arXiv 2512.10675)
+  - Validated against more than 1,600 real trials of Gemini Robotics checkpoints.
+  - Used to probe out-of-distribution and safety scenarios.
+
+**Video plus actions ("world action models")**
+
+- **Cosmos Predict 2.5** (October 2025) and **Cosmos Reason 2** (January 2026).
+- **Cosmos 3** (June 2026): couples a VLM reasoner to a diffusion generator that outputs both video and actions.
+- **DreamZero** (arXiv 2602.15922): a 14B autoregressive video-diffusion world action model running closed-loop at 7 Hz.
+- **1X's world model** (January 2026): a 14B video model adapted to egocentric human video and NEO logs, with an inverse-dynamics model that converts imagined frames into actions.
+
+The failure modes listed above (model exploitation, physically false contact, compounding error) are not resolved. What changed is that predictive models now have measurable, task-level roles: data generation, evaluation, and policy backbones.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -203,6 +243,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -253,5 +298,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

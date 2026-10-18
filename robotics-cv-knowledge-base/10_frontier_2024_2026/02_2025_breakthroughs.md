@@ -1,6 +1,6 @@
 # 2025 Breakthroughs
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Frontier
 > **Why It Matters for Robotics:** This is a very recent, rapidly changing area; claims here are dated and should be distinguished from independently reproduced evidence. 2025 Breakthroughs must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [2024 Breakthroughs](01_2024_breakthroughs.md), [2026 Current Frontier](03_2026_current_frontier.md), [Knowledge Base Index](../INDEX.md)
@@ -14,9 +14,13 @@ The frontier is converging on heterogeneous co-training, continuous action gener
 
 The robotics-first question is not whether a model can describe an image, but whether it can maintain the right state for intervention. Relevant state includes pose, free space, articulation, support, containment, material, contact, uncertainty, and expected change under action. Because actions alter observations, perception and control form a coupled dynamical system. This makes calibration, temporal consistency, recovery, and out-of-distribution detection first-class research concerns.
 
-In 2025 the frontier moved toward unseen environments, humanoid control, and hierarchical timescales. Physical Intelligence published pi0.5 on April 22, emphasizing heterogeneous co-training and generalization to homes absent from training. Figure announced Helix on February 20, pairing a 7-9 Hz VLM with a 200 Hz visuomotor controller for high-dimensional humanoid upper-body action. Google DeepMind announced Gemini Robotics and Gemini Robotics-ER on March 12, extending Gemini-derived multimodal reasoning toward physical action and embodied reasoning.
+In the first half of 2025 the frontier moved toward unseen environments, humanoid control, and hierarchical timescales. Physical Intelligence published pi0.5 on April 22, emphasizing heterogeneous co-training and generalization to homes absent from training. Figure announced Helix on February 20, pairing a 7-9 Hz VLM with a 200 Hz visuomotor controller for high-dimensional humanoid upper-body action. Google DeepMind announced Gemini Robotics and Gemini Robotics-ER on March 12, extending Gemini-derived multimodal reasoning toward physical action and embodied reasoning.
 
 These systems should be compared cautiously. pi0.5 reports controlled ablations over web, multi-environment, and cross-embodiment data; Helix provides unusually concrete architecture, rate, parameter, and teleoperation details but remains a company system; Gemini Robotics emphasizes generality, interactivity, and dexterity across partner platforms but is not an open training recipe. NVIDIA's GR00T releases and Isaac tooling reinforced a parallel strategy centered on humanoid data generation and simulation. The shared trend is hierarchy plus heterogeneous data, not convergence on one action representation.
+
+The second half of 2025 added four durable results. First, reinforcement learning returned on top of imitation pretraining: Physical Intelligence's pi*0.6 with RECAP (November 2025) used advantage-conditioned offline RL, autonomous experience, and teleoperator corrections to report more than doubled throughput on laundry, box assembly, and espresso tasks, while academic systems such as SimpleVLA-RL and piRL extended online RL to open VLAs. Second, world models acquired control roles: Meta's V-JEPA 2 (June) planned zero-shot pick-and-place from a latent predictor trained on under 62 hours of robot video, DeepMind's Genie 3 (August) generated interactive worlds in real time, Dreamer 4 trained agents purely inside an offline world model, and Ctrl-World and a Veo-based evaluator ranked robot policies without physical rollouts. Third, the reasoner-plus-actor split became explicit in Gemini Robotics 1.5 and ER 1.5 (September 25) and in GR00T N1.6 with Cosmos Reason (December). Fourth, data and evaluation scaled: Generalist AI reported scaling relations at more than 270,000 hours of real data (GEN-0, November), TRI published a careful large-behavior-model study, RoboArena introduced distributed blind pairwise evaluation, and the NeurIPS BEHAVIOR Challenge showed that even the best entry reached only about 26% partial credit on fifty household tasks.
+
+On the perception side, feed-forward geometry won the CVPR 2025 best paper (VGGT), Meta released DINOv3 (August) and SAM 3 with concept prompts (November), and learned stereo (FoundationStereo) became a credible depth source. Open releases broadened through SmolVLA, pi0.5 weights in openpi, X-VLA, RDT2, and Galaxea G0. Hardware milestones included Jetson Thor general availability (August), the Boston Dynamics and TRI whole-body Atlas behavior model (August), Figure 03 (October), and 1X NEO consumer preorders (October). Most capability numbers from this period remain developer-reported.
 
 
 ## Core Technical Ideas
@@ -160,6 +164,11 @@ is not an analysis.
 | Gemini Robotics | 2025 | VLA | Extended a multimodal model toward dexterous physical action |
 | Helix | 2025 | humanoid VLA | Demonstrated asynchronous semantic and 200 Hz control |
 | pi0.5 | 2025 | VLA | Targeted unseen-home generalization with heterogeneous co-training |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| V-JEPA 2 | 2025 | latent world model | Self-supervised video model with action-conditioned planning |
+| Helix 02 | 2026 | humanoid VLA | Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy |
+| Cosmos 3 | 2026 | world foundation model | Open model unifying physical reasoning, video generation, and actions |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -170,6 +179,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | SimplerEnv | VLA evaluation | real-to-sim correlation and success | Attempts scalable policy comparison |
 | LIBERO | knowledge transfer | task success | Tests several generalization regimes |
 | BEHAVIOR-1K | household activities | task and predicate success | Moves evaluation toward long-horizon physical state change |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 
@@ -210,5 +221,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

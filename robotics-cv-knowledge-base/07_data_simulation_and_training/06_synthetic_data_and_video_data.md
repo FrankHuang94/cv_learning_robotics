@@ -1,6 +1,6 @@
 # Synthetic Data And Video Data
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Robot learning is constrained less by raw model capacity than by expensive action-labeled trajectories, inconsistent embodiments, sparse failures, and weak evaluation. Synthetic Data And Video Data must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Sim2Real And Domain Randomization](05_sim2real_and_domain_randomization.md), [Self Supervised Robot Perception](07_self_supervised_robot_perception.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,22 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Synthetic and video data became central to industrial recipes.**
+
+- NVIDIA trained GR00T N1.5 partly on Cosmos-generated "GR00T-Dreams" trajectories.
+- Cosmos Predict and Transfer 2.5 (October 2025) and Cosmos 3 (June 2026) are offered as open generators for robot training video.
+- Unitree's UnifoLM-WMA-0 uses a world model both as a synthetic-data engine and as a policy enhancer.
+
+**Human video as a source of robot behavior**
+
+- Physical Intelligence reports that transfer from egocentric human video emerges with sufficient robot pretraining.
+- Figure reports language-conditioned home navigation learned from human video alone.
+- 1X adapts a web-pretrained video model to egocentric human footage before robot fine-tuning.
+
+**The caution above still applies.** Action-free video does not identify forces, controller state or counterfactual outcomes. Every such recipe still ends with action-labeled robot data. Reported gains should be read with the amount of that final robot data in view.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -167,6 +183,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | DROID | in-the-wild manipulation | downstream success | Diverse scenes, tasks, and operators |
 | BridgeData V2 | language-conditioned manipulation | policy success | Broad tabletop skills |
 | RoboCasa | simulated household manipulation | task success | Large procedural scenes and tasks |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 

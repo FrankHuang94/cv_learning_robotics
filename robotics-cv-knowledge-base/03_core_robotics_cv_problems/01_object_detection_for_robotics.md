@@ -1,6 +1,6 @@
 # Object Detection For Robotics
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Object Detection For Robotics must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Task Map](00_task_map.md), [Pose Estimation And 6D Pose](02_pose_estimation_and_6d_pose.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,26 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Open-vocabulary detection and segmentation consolidated into a few foundation models.**
+
+- **SAM 3 "Segment Anything with Concepts"** (Meta, November 2025, ICLR 2026)
+  - Returns every instance matching a noun phrase or an image exemplar, in images and video.
+  - Introduces the SA-Co benchmark with about 270,000 concepts.
+  - Largely subsumes Grounded-SAM-style detector-plus-segmenter pipelines.
+- **DINOv3** (Meta, August 2025): a 7B self-supervised backbone, with distilled variants, whose frozen features rival specialized models on dense tasks.
+- **SigLIP 2** (February 2025).
+- **Meta's Perception Encoder** (April 2025).
+
+**What changes for robotics**
+
+- The detection bottleneck moves further downstream, to:
+  - metric pose;
+  - instance persistence through manipulation;
+  - calibrated rejection of absent objects.
+- Concept prompts make it easy to "find" an object that is not present. Evaluation should include negative queries.
 
 ## Key Systems / Methods / Papers
 

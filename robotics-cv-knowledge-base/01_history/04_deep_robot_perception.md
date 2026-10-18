@@ -1,6 +1,6 @@
 # Deep Robot Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** The history matters because today's foundation policies inherit unresolved assumptions from calibration, stereo, SLAM, recognition, and behavior cloning. Deep Robot Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [RGB-D And 3D Perception](03_rgbd_and_3d_perception.md), [Multimodal And Foundation Models](05_multimodal_and_foundation_models.md), [Knowledge Base Index](../INDEX.md)

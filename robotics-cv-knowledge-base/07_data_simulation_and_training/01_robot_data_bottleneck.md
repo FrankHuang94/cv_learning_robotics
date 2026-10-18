@@ -1,6 +1,6 @@
 # Robot Data Bottleneck
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Robot learning is constrained less by raw model capacity than by expensive action-labeled trajectories, inconsistent embodiments, sparse failures, and weak evaluation. Robot Data Bottleneck must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Overview](00_overview.md), [Teleoperation And Demonstrations](02_teleoperation_and_demonstrations.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,23 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Scale.** Company-reported real-robot data scales grew by an order of magnitude between 2024 and 2026:
+
+- Physical Intelligence: more than 10,000 hours behind the π0.5 checkpoints.
+- Ant Group's LingBot-VLA: about 20,000 hours.
+- Generalist AI: more than 270,000 hours for GEN-0 and more than 500,000 hours for GEN-1, collected with distributed human-operated devices.
+
+**Data collection beyond lab teleoperation**
+
+- **UMI-style handheld grippers.** RDT2 uses more than 10,000 hours of enhanced-UMI data.
+- **Egocentric human video**, used by Physical Intelligence, Figure's Project Go-Big, 1X and Tesla.
+- **Consumer deployment with remote "expert" teleoperation for unknown tasks.** This is 1X NEO's announced model, with preorders since October 2025.
+- **Factory pilots that double as data engines.** Tesla says its first Optimus production units go to an internal "Optimus Academy" for data collection, not to customers (Q2 2026 update).
+
+The bottleneck has shifted from raw hours to labeled outcomes, failure and recovery coverage, and comparable metadata across collectors.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -169,6 +186,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | DROID | in-the-wild manipulation | downstream success | Diverse scenes, tasks, and operators |
 | BridgeData V2 | language-conditioned manipulation | policy success | Broad tabletop skills |
 | RoboCasa | simulated household manipulation | task success | Large procedural scenes and tasks |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 

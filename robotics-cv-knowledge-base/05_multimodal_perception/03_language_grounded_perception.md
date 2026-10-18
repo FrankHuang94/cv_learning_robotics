@@ -1,6 +1,6 @@
 # Language Grounded Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Vision is informative before contact, but touch, force, proprioception, depth, and language resolve ambiguities that RGB alone cannot observe. Language Grounded Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Visuotactile Learning](02_visuotactile_learning.md), [Open Vocabulary Robot Perception](04_open_vocabulary_robot_perception.md), [Knowledge Base Index](../INDEX.md)
@@ -147,6 +147,22 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Grounding became concept-level and promptable.** SAM 3 (November 2025) segments and tracks every instance of a noun phrase or exemplar across video.
+
+**Embodied-reasoning models output grounded intermediate quantities.** These include points, boxes, trajectories and success judgments:
+
+- Gemini Robotics-ER 1.5, 1.6 and 2;
+- Cosmos Reason 2;
+- RoboBrain 2.0;
+- MolmoAct.
+
+**Robot-facing caveats**
+
+- Grounding must be verified in the robot frame and over time.
+- The models' own success judgments must be checked against independent outcome detectors.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -155,6 +171,8 @@ is not an analysis.
 | GelSight | 2017 | tactile sensor | Captures high-resolution contact geometry |
 | ViViDex | 2023 | visuotactile policy | Uses human video and tactile sensing for dexterity |
 | Grounding DINO | 2023 | open-set detector | Grounds free-form text in images |
+| DINOv3 | 2025 | self-supervised backbone | Frozen dense features rival specialized models |
+| SAM 3 | 2025 | concept segmentation | Segments and tracks every instance of a text or exemplar concept |
 | MDETR | 2021 | grounding | End-to-end text-conditioned detection |
 | Grounding DINO | 2023 | grounding | Open-set phrase-to-box detection |
 

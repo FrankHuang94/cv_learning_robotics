@@ -1,6 +1,6 @@
 # Simulation Platforms
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Robot learning is constrained less by raw model capacity than by expensive action-labeled trajectories, inconsistent embodiments, sparse failures, and weak evaluation. Simulation Platforms must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Cross Embodiment Datasets](03_cross_embodiment_datasets.md), [Sim2Real And Domain Randomization](05_sim2real_and_domain_randomization.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,31 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+Simulation consolidated around GPU-parallel physics, open standards and learned world simulators.
+
+**Physics engines and simulators**
+
+- **Newton:** an open GPU physics engine built on NVIDIA Warp and OpenUSD by Disney Research, Google DeepMind and NVIDIA. It was contributed to the Linux Foundation in September 2025 and now sits beneath MuJoCo Warp and NVIDIA's simulators.
+- **NVIDIA Isaac Sim and Isaac Lab:**
+  - Isaac Sim 5.0 and Isaac Lab 2.2 reached general availability at SIGGRAPH (August 2025), with the Isaac Sim extensions open-sourced.
+  - Isaac Lab 3.0 entered beta with a Newton backend in March 2026.
+  - Isaac Sim 6.0 became generally available in June 2026, with Newton integration.
+- **MuJoCo Playground** (RSS 2025) combines MJX with batch rendering and reports zero-shot sim-to-real transfer from both state and pixels.
+- **ManiSkill3** reports more than 30,000 FPS for GPU-parallel manipulation simulation.
+- **Genesis:** its company, Genesis AI, launched in July 2025 with a $105M seed.
+
+**Task suites**
+
+- **RoboCasa365** (ICLR 2026) scales household manipulation to 365 tasks and 2,500 kitchens, with more than 600 hours of human demonstrations and 1,600 hours of synthetic demonstrations, plus a leaderboard.
+- **AgiBot's Genie Sim 3.0** is used for sim-only training that the company reports transfers to real robots.
+- **LeRobot v0.6** standardizes six simulation benchmarks under `lerobot-eval`.
+
+**Learned simulators**
+
+Learned simulators are now a complementary category: Veo-based policy evaluation, Ctrl-World, Cosmos and Genie. So are real-to-sim twins built from Gaussian splats; arXiv 2511.04665 reports a correlation of at least 0.897 between simulated and real success for soft-body tasks. These provide appearance realism and cheap evaluation, but contact fidelity remains the open question.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -169,6 +194,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | DROID | in-the-wild manipulation | downstream success | Diverse scenes, tasks, and operators |
 | BridgeData V2 | language-conditioned manipulation | policy success | Broad tabletop skills |
 | RoboCasa | simulated household manipulation | task success | Large procedural scenes and tasks |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 

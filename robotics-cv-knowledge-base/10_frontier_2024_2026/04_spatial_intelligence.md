@@ -1,6 +1,6 @@
 # Spatial Intelligence
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Frontier
 > **Why It Matters for Robotics:** This is a very recent, rapidly changing area; claims here are dated and should be distinguished from independently reproduced evidence. Spatial Intelligence must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [2026 Current Frontier](03_2026_current_frontier.md), [World Model Vs VLA](05_world_model_vs_vla.md), [Knowledge Base Index](../INDEX.md)
@@ -153,6 +153,18 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Embodied-reasoning models now expose explicit spatial outputs.**
+
+- **Gemini Robotics-ER 1.5, 1.6 and 2** output points, boxes, trajectories and success judgments.
+- **NVIDIA's Cosmos Reason 2** (January 2026) adds 2D and 3D point localization.
+- **MolmoAct** produces depth-aware tokens and image-space waypoint plans.
+
+**Geometry from feed-forward models.** On the vision side, feed-forward 3D and 4D reconstruction became fast enough to act as a spatial front end. The CVPR 2025 best paper VGGT and the CVPR 2026 best paper D4RT, which does feed-forward dynamic reconstruction from video, are the milestones; see the 3D notes for details.
+
+**Why this matters.** Together these developments make the "spatial answer in the robot's frame" requirement above testable at scale. Benchmarks still rarely verify spatial answers through executed actions.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -162,6 +174,11 @@ is not an analysis.
 | Gemini Robotics | 2025 | VLA | Extended a multimodal model toward dexterous physical action |
 | Helix | 2025 | humanoid VLA | Demonstrated asynchronous semantic and 200 Hz control |
 | pi0.5 | 2025 | VLA | Targeted unseen-home generalization with heterogeneous co-training |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| V-JEPA 2 | 2025 | latent world model | Self-supervised video model with action-conditioned planning |
+| Helix 02 | 2026 | humanoid VLA | Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy |
+| Cosmos 3 | 2026 | world foundation model | Open model unifying physical reasoning, video generation, and actions |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -172,6 +189,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | SimplerEnv | VLA evaluation | real-to-sim correlation and success | Attempts scalable policy comparison |
 | LIBERO | knowledge transfer | task success | Tests several generalization regimes |
 | BEHAVIOR-1K | household activities | task and predicate success | Moves evaluation toward long-horizon physical state change |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 
@@ -212,5 +231,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

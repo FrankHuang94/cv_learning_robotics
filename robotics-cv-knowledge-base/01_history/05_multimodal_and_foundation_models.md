@@ -1,6 +1,6 @@
 # Multimodal And Foundation Models
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** The history matters because today's foundation policies inherit unresolved assumptions from calibration, stereo, SLAM, recognition, and behavior cloning. Multimodal And Foundation Models must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Deep Robot Perception](04_deep_robot_perception.md), [Embodied Ai 2024 2026](06_embodied_ai_2024_2026.md), [Knowledge Base Index](../INDEX.md)

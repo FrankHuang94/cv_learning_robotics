@@ -1,6 +1,6 @@
 # Point Clouds Voxels Meshes
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. Point Clouds Voxels Meshes must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Overview](00_overview.md), [Sfm Slam And Visual Odometry](02_sfm_slam_and_visual_odometry.md), [Knowledge Base Index](../INDEX.md)
@@ -157,6 +157,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 

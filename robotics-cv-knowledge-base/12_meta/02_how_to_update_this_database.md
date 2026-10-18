@@ -1,6 +1,6 @@
 # How To Update This Database
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Research notes need explicit definitions, reading order, update rules, and falsifiable questions to remain useful as the field changes. How To Update This Database must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Reading Path For Phd Student](01_reading_path_for_phd_student.md), [Research Questions Backlog](03_research_questions_backlog.md), [Knowledge Base Index](../INDEX.md)
@@ -145,6 +145,31 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**October 2026 refresh**
+
+- The October 2026 refresh added dated "Recent Developments" sections to the affected notes and rewrote the 2025 and 2026 frontier notes.
+- It added `10_frontier_2024_2026/08_industry_status_2026.md`.
+- Updates live in `scripts/kb_recent.py` and the `SPECIAL` entries of `scripts/build_kb.py`.
+
+**Sourcing for this refresh**
+
+- Most items were collected from web-search results pointing to primary sources: company blogs, arXiv, official press releases and filings.
+- Items described as "reported" rely on secondary coverage and should be re-verified before citation.
+
+**Simplified Chinese reference edition**
+
+- A Simplified Chinese reference edition is generated in `Chinese translation/` by `scripts/build_kb_zh.py`, from translated text in `scripts/kb_zh/`.
+- Every Chinese note links to its English original.
+
+**Updating both editions**
+
+1. Edit the English source.
+2. Run `python3 scripts/build_kb.py`.
+3. Add the matching translation to `scripts/kb_zh/`.
+4. Run `python3 scripts/build_kb_zh.py`. The Chinese builder fails on any untranslated new entry, so the two editions cannot silently drift apart.
 
 ## Key Systems / Methods / Papers
 

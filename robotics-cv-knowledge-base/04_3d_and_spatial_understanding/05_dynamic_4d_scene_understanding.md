@@ -1,6 +1,6 @@
 # Dynamic 4D Scene Understanding
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. Dynamic 4D Scene Understanding must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [3D Gaussian Splatting For Robotics](04_3d_gaussian_splatting_for_robotics.md), [Occupancy And World Representation](06_occupancy_and_world_representation.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,17 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Dynamic 4D reconstruction from monocular video became fast and feed-forward.**
+
+- **D4RT** (Google DeepMind, UCL and Oxford; CVPR 2026 Best Paper) uses a global encoder and a query decoder. It answers geometry and motion for any point at any time, reportedly 18–300 times faster than prior approaches.
+- **MegaSaM** (CVPR 2025 honorable mention) recovers cameras and depth from casual dynamic video.
+- **SpatialTrackerV2** (ICCV 2025) performs feed-forward 3D point tracking with joint depth and pose.
+- **CUT3R** handles dynamic scenes online.
+
+**Application to manipulation.** These models make it plausible to track deforming and articulated objects during manipulation. Robot-specific evaluation under occlusion by the arm, and at control-relevant latency, is still scarce.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -157,6 +168,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 | D-NeRF | 2021 | dynamic field | Canonical-space dynamic neural rendering |
 | Dynamic 3D Gaussians | 2024 | 4D representation | Tracks time-varying Gaussian scenes |
 

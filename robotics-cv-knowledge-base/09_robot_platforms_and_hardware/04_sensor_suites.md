@@ -1,6 +1,6 @@
 # Sensor Suites
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Embodiment determines observability, action space, control rate, data compatibility, and which visual errors become dangerous. Sensor Suites must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Mobile Robots And Navigation Stacks](03_mobile_robots_and_navigation_stacks.md), [Compute Latency And Deployment](05_compute_latency_and_deployment.md), [Knowledge Base Index](../INDEX.md)

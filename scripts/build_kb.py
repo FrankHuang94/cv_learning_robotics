@@ -7,9 +7,11 @@ from datetime import date
 from pathlib import Path
 import re
 
+from kb_recent import RECENT_UPDATES
+
 
 ROOT = Path(__file__).resolve().parents[1] / "robotics-cv-knowledge-base"
-UPDATED = date(2026, 6, 11).isoformat()
+UPDATED = date(2026, 10, 18).isoformat()
 
 STRUCTURE = {
     "00_scope_and_map": "00_overview 01_what_counts_as_robotics_cv 02_field_map 03_major_debates",
@@ -22,7 +24,7 @@ STRUCTURE = {
     "07_data_simulation_and_training": "00_overview 01_robot_data_bottleneck 02_teleoperation_and_demonstrations 03_cross_embodiment_datasets 04_simulation_platforms 05_sim2real_and_domain_randomization 06_synthetic_data_and_video_data 07_self_supervised_robot_perception 08_evaluation_and_benchmarks",
     "08_manipulation_navigation_and_control": "00_overview 01_perception_for_manipulation 02_perception_for_mobile_navigation 03_bimanual_and_dexterous_tasks 04_long_horizon_task_execution 05_task_and_motion_interface 06_planning_with_visual_representations 07_closed_loop_robot_vision",
     "09_robot_platforms_and_hardware": "00_overview 01_robot_arms_and_manipulators 02_humanoid_platforms 03_mobile_robots_and_navigation_stacks 04_sensor_suites 05_compute_latency_and_deployment",
-    "10_frontier_2024_2026": "00_state_of_the_field 01_2024_breakthroughs 02_2025_breakthroughs 03_2026_current_frontier 04_spatial_intelligence 05_world_model_vs_vla 06_robotics_cv_open_problems 07_future_roadmaps",
+    "10_frontier_2024_2026": "00_state_of_the_field 01_2024_breakthroughs 02_2025_breakthroughs 03_2026_current_frontier 04_spatial_intelligence 05_world_model_vs_vla 06_robotics_cv_open_problems 07_future_roadmaps 08_industry_status_2026",
     "11_datasets_papers_labs": "00_must_know_datasets 01_must_read_papers 02_major_labs_and_companies 03_open_source_ecosystem 04_conference_map",
     "12_meta": "00_research_glossary 01_reading_path_for_phd_student 02_how_to_update_this_database 03_research_questions_backlog",
 }
@@ -107,6 +109,14 @@ DOMAIN = {
         "datasets": [("Database completion audit", "coverage", "files and sections complete", "Prevents hollow scaffolding"), ("Citation freshness audit", "recency", "age and source class", "Flags unstable claims"), ("Replication audit", "evidence quality", "independent confirmations", "Separates demonstrations from established capability")],
     },
 }
+
+# October 2026 refresh: systems and benchmarks that became reference points after mid-2025.
+DOMAIN["04_3d_and_spatial_understanding"]["systems"] += [("VGGT", 2025, "feed-forward 3D", "Infers cameras, depth, and point maps from many views in one pass"), ("D4RT", 2025, "feed-forward 4D", "Queries dynamic geometry and motion for any point at any time")]
+DOMAIN["05_multimodal_perception"]["systems"] += [("DINOv3", 2025, "self-supervised backbone", "Frozen dense features rival specialized models"), ("SAM 3", 2025, "concept segmentation", "Segments and tracks every instance of a text or exemplar concept")]
+DOMAIN["06_vla_and_embodied_foundation_models"]["systems"] += [("Gemini Robotics 1.5 / 2", 2025, "reasoner + VLA", "Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control"), ("pi*0.6 (RECAP)", 2025, "RL-refined VLA", "Advantage-conditioned RL from experience and interventions"), ("GR00T N1.6 / N1.7", 2025, "humanoid VLA", "Open humanoid policy with a Cosmos Reason planner"), ("DreamZero", 2026, "world action model", "Jointly predicts video and actions; basis of the GR00T N2 preview"), ("pi0.7", 2026, "steerable VLA", "Prompts mix subtask text, metadata, and subgoal images")]
+DOMAIN["07_data_simulation_and_training"]["datasets"] += [("RoboArena", "distributed real-robot evaluation", "pairwise preference ranking", "Crowd-sourced blind A/B comparisons of generalist policies"), ("BEHAVIOR Challenge 2025", "long-horizon household tasks", "partial-credit Q-score", "Fifty full-length tasks expose the long-horizon gap")]
+DOMAIN["10_frontier_2024_2026"]["systems"] += [("pi*0.6 (RECAP)", 2025, "RL-refined VLA", "Advantage-conditioned RL from experience and interventions"), ("Gemini Robotics 1.5 / 2", 2025, "reasoner + VLA", "Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control"), ("V-JEPA 2", 2025, "latent world model", "Self-supervised video model with action-conditioned planning"), ("Helix 02", 2026, "humanoid VLA", "Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy"), ("Cosmos 3", 2026, "world foundation model", "Open model unifying physical reasoning, video generation, and actions")]
+DOMAIN["10_frontier_2024_2026"]["datasets"] += [("RoboArena", "distributed real-robot evaluation", "pairwise preference ranking", "Crowd-sourced blind A/B comparisons of generalist policies"), ("BEHAVIOR Challenge 2025", "long-horizon household tasks", "partial-credit Q-score", "Fifty full-length tasks expose the long-horizon gap")]
 
 SPECIAL = {
     "00_overview_roadmap": """
@@ -229,14 +239,39 @@ The 2024 inflection was openness and continuous action generation. OpenVLA and O
 The year also exposed evaluation weakness. Models were trained on overlapping Open X-Embodiment mixtures but tested on different robots, tasks, resets, and success definitions. SimplerEnv attempted scalable VLA evaluation through real-to-sim correspondence, while LIBERO and CALVIN remained common but imperfect proxies. The durable breakthrough was not a universally superior policy; it was a research program around open generalist models, heterogeneous data, action chunks, and reproducible adaptation.
 """,
     "02_2025_breakthroughs": """
-In 2025 the frontier moved toward unseen environments, humanoid control, and hierarchical timescales. Physical Intelligence published pi0.5 on April 22, emphasizing heterogeneous co-training and generalization to homes absent from training. Figure announced Helix on February 20, pairing a 7-9 Hz VLM with a 200 Hz visuomotor controller for high-dimensional humanoid upper-body action. Google DeepMind announced Gemini Robotics and Gemini Robotics-ER on March 12, extending Gemini-derived multimodal reasoning toward physical action and embodied reasoning.
+In the first half of 2025 the frontier moved toward unseen environments, humanoid control, and hierarchical timescales. Physical Intelligence published pi0.5 on April 22, emphasizing heterogeneous co-training and generalization to homes absent from training. Figure announced Helix on February 20, pairing a 7-9 Hz VLM with a 200 Hz visuomotor controller for high-dimensional humanoid upper-body action. Google DeepMind announced Gemini Robotics and Gemini Robotics-ER on March 12, extending Gemini-derived multimodal reasoning toward physical action and embodied reasoning.
 
 These systems should be compared cautiously. pi0.5 reports controlled ablations over web, multi-environment, and cross-embodiment data; Helix provides unusually concrete architecture, rate, parameter, and teleoperation details but remains a company system; Gemini Robotics emphasizes generality, interactivity, and dexterity across partner platforms but is not an open training recipe. NVIDIA's GR00T releases and Isaac tooling reinforced a parallel strategy centered on humanoid data generation and simulation. The shared trend is hierarchy plus heterogeneous data, not convergence on one action representation.
+
+The second half of 2025 added four durable results. First, reinforcement learning returned on top of imitation pretraining: Physical Intelligence's pi*0.6 with RECAP (November 2025) used advantage-conditioned offline RL, autonomous experience, and teleoperator corrections to report more than doubled throughput on laundry, box assembly, and espresso tasks, while academic systems such as SimpleVLA-RL and piRL extended online RL to open VLAs. Second, world models acquired control roles: Meta's V-JEPA 2 (June) planned zero-shot pick-and-place from a latent predictor trained on under 62 hours of robot video, DeepMind's Genie 3 (August) generated interactive worlds in real time, Dreamer 4 trained agents purely inside an offline world model, and Ctrl-World and a Veo-based evaluator ranked robot policies without physical rollouts. Third, the reasoner-plus-actor split became explicit in Gemini Robotics 1.5 and ER 1.5 (September 25) and in GR00T N1.6 with Cosmos Reason (December). Fourth, data and evaluation scaled: Generalist AI reported scaling relations at more than 270,000 hours of real data (GEN-0, November), TRI published a careful large-behavior-model study, RoboArena introduced distributed blind pairwise evaluation, and the NeurIPS BEHAVIOR Challenge showed that even the best entry reached only about 26% partial credit on fifty household tasks.
+
+On the perception side, feed-forward geometry won the CVPR 2025 best paper (VGGT), Meta released DINOv3 (August) and SAM 3 with concept prompts (November), and learned stereo (FoundationStereo) became a credible depth source. Open releases broadened through SmolVLA, pi0.5 weights in openpi, X-VLA, RDT2, and Galaxea G0. Hardware milestones included Jetson Thor general availability (August), the Boston Dynamics and TRI whole-body Atlas behavior model (August), Figure 03 (October), and 1X NEO consumer preorders (October). Most capability numbers from this period remain developer-reported.
 """,
     "03_2026_current_frontier": """
-As of June 10, 2026, this section must be treated as provisional. The most credible trajectory is toward longer-horizon mobile manipulation, whole-body humanoid control, predictive data engines, and on-device multimodal policies. Public claims are arriving faster than peer-reviewed, independently reproduced evidence, and product names or versions may change within months.
+As of October 18, 2026, this section must still be treated as provisional, but the shape of the year is clear. Four threads define the 2026 research frontier: whole-body humanoid control, world action models, steerable generalist policies with memory, and evaluation through arenas and learned simulators. Public claims continue to arrive faster than peer-reviewed, independently reproduced evidence.
 
-The research bar for 2026 should therefore be longitudinal and operational: unseen-site deployment, hours between interventions, recovery after induced perturbations, calibrated stopping, whole-body collision safety, and transparent accounting of teleoperation or remote assistance. Short demonstration videos are useful qualitative evidence but cannot establish autonomy, reliability, or scaling laws. Updates to this note should cite a dated technical report, paper, benchmark protocol, or reproducible release and explicitly separate those from press or company claims.
+Whole-body control arrived in several industrial stacks at once. Figure's Helix 02 (February) added a 1 kHz learned whole-body controller beneath its 200 Hz visuomotor policy; Google DeepMind's Gemini Robotics 2 (July 30) extended its VLA from upper bodies to full humanoids on Apptronik Apollo 2, alongside ER 2 for streaming video understanding and multi-robot coordination and On-Device 2 for local adaptation; NVIDIA's GR00T N1.6 and N1.7 targeted loco-manipulation; and Boston Dynamics began producing the electric Atlas for Hyundai and DeepMind. Reported success rates remain far from industrial reliability: Gemini Robotics 2 reports roughly 46-76% pickup success depending on surface.
+
+World action models narrowed the boundary between policies and predictive models. NVIDIA's DreamZero (February) jointly predicts video and actions at 7 Hz and underlies the GR00T N2 preview announced at GTC in March; Cosmos 3 (June) unifies physical reasoning, video generation, and action generation in one open model; 1X's world model (January) converts imagined video into actions with inverse dynamics. Latent alternatives also scaled: RoboJEPA (October) reports compute power laws for latent world-model error across twelve embodiments, and Yann LeCun's AMI Labs raised a $1.03B seed for representation-space world models.
+
+Generalist policies became more steerable and longer-lived. Physical Intelligence's MEM (March) adds multi-scale memory for tasks beyond ten minutes, and pi0.7 (April) accepts mixed prompts of subtask text, metadata, and subgoal images while reportedly matching RL-tuned specialists; its API beta opened on October 13. Generalist's GEN-1 (April) claims more than 500,000 hours of training data. In perception, feed-forward 4D reconstruction won the CVPR 2026 best paper (D4RT), and SAM 3, DINOv3, and VGGT-style models became standard front ends.
+
+The research bar for the rest of 2026 should remain longitudinal and operational: unseen-site deployment, hours between interventions, recovery after induced perturbations, calibrated stopping, whole-body collision safety, and transparent accounting of teleoperation or remote assistance. Items to watch include the promised GR00T N2 release, CoRL 2026 in November, and whether any humanoid deployment publishes intervention-accounted reliability data. Updates to this note should cite a dated technical report, paper, benchmark protocol, or reproducible release and explicitly separate those from press or company claims.
+""",
+    "08_industry_status_2026": """
+The embodied-AI industry entered late 2026 with record capital, the first public listings of humanoid makers, and still-small deployed volumes. Figures below are dated; funding amounts and capacities are company-reported unless noted, and third-party counts such as Omdia's are closer to independent measurement.
+
+Capital and valuations. Crunchbase counted about $18.8B of robotics venture funding in the first half of 2026, more than all of 2025. Figure raised more than $1B at a $39B valuation (September 2025); Skild AI about $1.4B at more than $14B (January 2026); Physical Intelligence $600M at about $5.6B (November 2025) with a roughly $11B round reported in 2026; Apptronik a $520M Series A extension (February 2026); Generalist AI $400M at about $2B (June 2026); NEURA Robotics up to $1.4B (June 2026); and XPeng's robotics unit more than $900M (August 2026). SoftBank agreed to buy ABB Robotics for $5.375B (October 2025) and Mobileye agreed to buy Mentee Robotics for about $900M (January 2026).
+
+Public markets. Unitree listed on Shanghai's STAR Market on August 19, 2026, pricing at 150.80 CNY and closing its first day at 844.80 CNY, a market capitalization of roughly 342B CNY; its prospectus reports more than 5,500 humanoids delivered in 2025, revenue of about 1.7B CNY, and a net profit. Agility Robotics agreed in June 2026 to go public through a SPAC at $2.5B pre-money. AgiBot began a Hong Kong IPO process in July 2026 and Galbot is preparing one; UBTech is already listed in Hong Kong.
+
+Volumes and deployments. Omdia counted roughly 13,000 humanoids shipped worldwide in 2025, about 90% from Chinese firms, led by AgiBot (about 5,200), Unitree (4,200 by Omdia's count), and UBTech (about 1,000; UBTech reports 1,079 full-size units sold). Most Chinese units went to research, education, retail, and entertainment. Recurring paid work in customer facilities is documented for Agility Digit in logistics, Figure robots at BMW Spartanburg (BMW announced Figure 03 deployment on June 25, 2026), and UBTech Walker S units in Chinese factories. Tesla's first Optimus production units go to internal data collection, Optimus V3 had not been unveiled by mid-October, and 1X had not publicly confirmed consumer NEO deliveries; Boston Dynamics' production Atlas is committed to Hyundai and Google DeepMind for 2026, with Hyundai factory deployment planned for 2028.
+
+Platforms and compute. NVIDIA positions itself as the physical-AI platform: Jetson Thor (general availability August 2025, with list prices raised in July 2026), the GR00T model line, Cosmos world models, Isaac simulation on the Newton physics engine, and an open GR00T reference humanoid. Google DeepMind offers Gemini Robotics-ER through the Gemini API while keeping its VLAs in partner programs with Apptronik, Boston Dynamics, and Agile Robots. Physical Intelligence opened an API beta for fine-tuning and inference in October 2026. Amazon passed one million deployed robots in July 2025 and uses tactile picking (Vulcan) and a fleet foundation model (DeepFleet).
+
+Policy, safety, and adjacent markets. China's NDRC warned in November 2025 of bubble risk among more than 150 humanoid firms, even as humanoids and embodied AI were named future industries for the 2026-2030 Five-Year Plan; Beijing's April 2026 robot half marathon was won in 50:26, but only about 40% of entrants ran autonomously. ISO 25785-1, the safety standard for dynamically stable industrial mobile robots including humanoids, remained a committee draft. In adjacent embodied vision, Waymo reported 500,000 paid rides per week in March 2026 and expanded to new cities, while Tesla's unsupervised robotaxi fleet remained small.
+
+The research implication is that capital, announced capacity, and demonstrations have outrun published reliability evidence. Deployment claims should be read with unit counts, intervention and teleoperation accounting, and task definitions; announced factory capacity is not production, and preorders are not deliveries.
 """,
 }
 
@@ -249,9 +284,12 @@ FRONTIER_SOURCES = [
     ("Figure Helix", "https://www.figure.ai/news/helix"),
     ("Gemini Robotics", "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/"),
     ("NVIDIA GR00T", "https://developer.nvidia.com/isaac/gr00t"),
+    ("Physical Intelligence pi*0.6 (RECAP)", "https://arxiv.org/abs/2511.14759"),
+    ("Gemini Robotics 1.5", "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/"),
+    ("V-JEPA 2", "https://arxiv.org/abs/2506.09985"),
+    ("RoboArena", "https://arxiv.org/abs/2506.18123"),
+    ("NVIDIA Cosmos", "https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai"),
 ]
-
-RECENT_UPDATES: dict[str, str] = {}
 
 TOPIC_SYSTEMS = {
     "calibration": [("Zhang calibration", 2000, "calibration", "Standard planar-target camera calibration"), ("Kalibr", 2013, "toolkit", "Camera-IMU and multi-camera calibration")],
@@ -974,8 +1012,8 @@ def topic_analysis(slug: str, topic: str) -> str:
     return (text + "\n\n" + "\n\n".join(additions)).strip()
 
 
-def recent_updates(slug: str) -> str:
-    text = RECENT_UPDATES.get(slug, "").strip()
+def recent_updates(directory: str, slug: str) -> str:
+    text = RECENT_UPDATES.get(f"{directory}/{slug}", "").strip()
     if not text:
         return ""
     return f"""
@@ -1069,7 +1107,7 @@ Manipulation converts millimeter-scale pose, depth, or contact errors into misse
 Consequently, a credible result should state the embodiment, sensors, control frequency, inference hardware, environment split, number of trials, reset policy, intervention policy, and failure taxonomy. Generalization claims should name the axis held out: objects, layouts, tasks, instructions, embodiments, dynamics, or time. Aggregating these axes into a single success number conceals where the system actually transfers.
 
 {research_depth(directory, slug, t)}
-{recent_updates(slug)}
+{recent_updates(directory, slug)}
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -1136,6 +1174,12 @@ questions. Section 06 adds architecture-specific mathematical and experimental
 analysis for VLAs, action generators, world models, language grounding, and
 cross-embodiment scaling.
 
+The October 2026 refresh adds dated "Recent Developments" sections to 45 notes,
+rewrites the 2025 and 2026 frontier notes, and adds an industry-status snapshot
+in [10_frontier_2024_2026/08_industry_status_2026.md](10_frontier_2024_2026/08_industry_status_2026.md).
+A Simplified Chinese reference translation with the same structure lives in
+[`Chinese translation/`](../Chinese%20translation/README.md).
+
 ## What “Robotics-First CV” Means
 
 Robotics CV is judged by whether visual state supports safe and effective action. Detection and segmentation matter when they improve pose, reachability, affordance, memory, planning, control, or recovery. The database therefore downweights generic benchmark history and emphasizes geometry, time, uncertainty, contact, embodiment, latency, and distribution shift.
@@ -1171,7 +1215,7 @@ This index maps a robotics-first computer-vision survey centered on one question
 3. Study the task interface in [Core Task Map](03_core_robotics_cv_problems/00_task_map.md).
 4. Move to [3D and Spatial Understanding](04_3d_and_spatial_understanding/00_overview.md).
 5. Read the [Embodied Foundation Model Roadmap](06_vla_and_embodied_foundation_models/00_overview_roadmap.md).
-6. Finish with [State of the Field](10_frontier_2024_2026/00_state_of_the_field.md) and [Future Roadmaps](10_frontier_2024_2026/07_future_roadmaps.md).
+6. Finish with [State of the Field](10_frontier_2024_2026/00_state_of_the_field.md), [2026 Current Frontier](10_frontier_2024_2026/03_2026_current_frontier.md), [Industry Status 2026](10_frontier_2024_2026/08_industry_status_2026.md), and [Future Roadmaps](10_frontier_2024_2026/07_future_roadmaps.md).
 
 ## Most Important Files
 
@@ -1186,7 +1230,9 @@ This index maps a robotics-first computer-vision survey centered on one question
 
 ## Latest Frontier Topics
 
-The 2024–2026 notes track open VLAs, flow and diffusion action heads, heterogeneous co-training, humanoid whole-body policies, 3D Gaussian scene memory, action-conditioned world models, spatial intelligence, and visuotactile control. These files explicitly mark rapidly changing claims and should be refreshed from primary sources.
+The 2024–2026 notes track open VLAs, flow and diffusion action heads, heterogeneous co-training, humanoid whole-body policies, 3D Gaussian scene memory, action-conditioned world models, spatial intelligence, and visuotactile control. The October 2026 refresh adds RL fine-tuning of VLAs (RECAP, piRL), reasoner-plus-actor hierarchies (Gemini Robotics 1.5 and 2, GR00T N1.6), world action models (DreamZero, Cosmos 3), latent world models (V-JEPA 2, RoboJEPA), feed-forward 3D/4D reconstruction (VGGT, D4RT), concept segmentation (SAM 3), arena-style evaluation (RoboArena), and the 2026 industry landscape. These files explicitly mark rapidly changing claims and should be refreshed from primary sources.
+
+A Simplified Chinese reference translation of every note is available in [`Chinese translation/`](../Chinese%20translation/INDEX.md).
 
 ## Core Debates
 

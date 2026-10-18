@@ -1,6 +1,6 @@
 # 2026 Current Frontier
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Frontier
 > **Why It Matters for Robotics:** This is a very recent, rapidly changing area; claims here are dated and should be distinguished from independently reproduced evidence. 2026 Current Frontier must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [2025 Breakthroughs](02_2025_breakthroughs.md), [Spatial Intelligence](04_spatial_intelligence.md), [Knowledge Base Index](../INDEX.md)
@@ -14,9 +14,15 @@ The frontier is converging on heterogeneous co-training, continuous action gener
 
 The robotics-first question is not whether a model can describe an image, but whether it can maintain the right state for intervention. Relevant state includes pose, free space, articulation, support, containment, material, contact, uncertainty, and expected change under action. Because actions alter observations, perception and control form a coupled dynamical system. This makes calibration, temporal consistency, recovery, and out-of-distribution detection first-class research concerns.
 
-As of June 10, 2026, this section must be treated as provisional. The most credible trajectory is toward longer-horizon mobile manipulation, whole-body humanoid control, predictive data engines, and on-device multimodal policies. Public claims are arriving faster than peer-reviewed, independently reproduced evidence, and product names or versions may change within months.
+As of October 18, 2026, this section must still be treated as provisional, but the shape of the year is clear. Four threads define the 2026 research frontier: whole-body humanoid control, world action models, steerable generalist policies with memory, and evaluation through arenas and learned simulators. Public claims continue to arrive faster than peer-reviewed, independently reproduced evidence.
 
-The research bar for 2026 should therefore be longitudinal and operational: unseen-site deployment, hours between interventions, recovery after induced perturbations, calibrated stopping, whole-body collision safety, and transparent accounting of teleoperation or remote assistance. Short demonstration videos are useful qualitative evidence but cannot establish autonomy, reliability, or scaling laws. Updates to this note should cite a dated technical report, paper, benchmark protocol, or reproducible release and explicitly separate those from press or company claims.
+Whole-body control arrived in several industrial stacks at once. Figure's Helix 02 (February) added a 1 kHz learned whole-body controller beneath its 200 Hz visuomotor policy; Google DeepMind's Gemini Robotics 2 (July 30) extended its VLA from upper bodies to full humanoids on Apptronik Apollo 2, alongside ER 2 for streaming video understanding and multi-robot coordination and On-Device 2 for local adaptation; NVIDIA's GR00T N1.6 and N1.7 targeted loco-manipulation; and Boston Dynamics began producing the electric Atlas for Hyundai and DeepMind. Reported success rates remain far from industrial reliability: Gemini Robotics 2 reports roughly 46-76% pickup success depending on surface.
+
+World action models narrowed the boundary between policies and predictive models. NVIDIA's DreamZero (February) jointly predicts video and actions at 7 Hz and underlies the GR00T N2 preview announced at GTC in March; Cosmos 3 (June) unifies physical reasoning, video generation, and action generation in one open model; 1X's world model (January) converts imagined video into actions with inverse dynamics. Latent alternatives also scaled: RoboJEPA (October) reports compute power laws for latent world-model error across twelve embodiments, and Yann LeCun's AMI Labs raised a $1.03B seed for representation-space world models.
+
+Generalist policies became more steerable and longer-lived. Physical Intelligence's MEM (March) adds multi-scale memory for tasks beyond ten minutes, and pi0.7 (April) accepts mixed prompts of subtask text, metadata, and subgoal images while reportedly matching RL-tuned specialists; its API beta opened on October 13. Generalist's GEN-1 (April) claims more than 500,000 hours of training data. In perception, feed-forward 4D reconstruction won the CVPR 2026 best paper (D4RT), and SAM 3, DINOv3, and VGGT-style models became standard front ends.
+
+The research bar for the rest of 2026 should remain longitudinal and operational: unseen-site deployment, hours between interventions, recovery after induced perturbations, calibrated stopping, whole-body collision safety, and transparent accounting of teleoperation or remote assistance. Items to watch include the promised GR00T N2 release, CoRL 2026 in November, and whether any humanoid deployment publishes intervention-accounted reliability data. Updates to this note should cite a dated technical report, paper, benchmark protocol, or reproducible release and explicitly separate those from press or company claims.
 
 
 ## Core Technical Ideas
@@ -160,6 +166,11 @@ is not an analysis.
 | Gemini Robotics | 2025 | VLA | Extended a multimodal model toward dexterous physical action |
 | Helix | 2025 | humanoid VLA | Demonstrated asynchronous semantic and 200 Hz control |
 | pi0.5 | 2025 | VLA | Targeted unseen-home generalization with heterogeneous co-training |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| V-JEPA 2 | 2025 | latent world model | Self-supervised video model with action-conditioned planning |
+| Helix 02 | 2026 | humanoid VLA | Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy |
+| Cosmos 3 | 2026 | world foundation model | Open model unifying physical reasoning, video generation, and actions |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -170,6 +181,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | SimplerEnv | VLA evaluation | real-to-sim correlation and success | Attempts scalable policy comparison |
 | LIBERO | knowledge transfer | task success | Tests several generalization regimes |
 | BEHAVIOR-1K | household activities | task and predicate success | Moves evaluation toward long-horizon physical state change |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 
@@ -210,5 +223,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

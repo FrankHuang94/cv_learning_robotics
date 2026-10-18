@@ -1,6 +1,6 @@
 # Generalist Vs Specialist
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. Generalist Vs Specialist must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Levels Of Generalization](08_levels_of_generalization.md), [Diffusion Policy And Action Generation](06_diffusion_policy_and_action_generation.md), [Knowledge Base Index](../INDEX.md)
@@ -188,6 +188,23 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+Evidence from 2025–2026 sharpens rather than settles the debate.
+
+**For the generalist side**
+
+- TRI's careful study of large behavior models (July 2025) found that fine-tuned multitask policies beat single-task specialists. They were also more robust to distribution shift and needed much less task data.
+- Physical Intelligence reports that one π0.7 model matches its own RL-fine-tuned π\*0.6 task specialists (April 2026, company report).
+
+**For the specialist side**
+
+- The most reliable reported deployments still pair generalist pretraining with task-specific post-training and RL: π\*0.6 on espresso and laundry, and Dyna's napkin folding.
+- Whole-body humanoid systems keep learned but specialized low-level controllers. Helix 02's S0 is one example.
+- Gemini Robotics 2's reported pickup success rates show how far broad generality remains from industrial reliability (company figures): 68.4% from tables, 45.7% from floors and 76.3% from shelves.
+
+The practical synthesis is "generalist initialization, specialist certification": shared pretraining for breadth, plus per-deployment data, RL and validation for reliability.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -198,6 +215,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -248,5 +270,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

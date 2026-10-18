@@ -1,6 +1,6 @@
 # Sensor Fusion
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Reliable robot behavior depends on calibrated geometry, temporal estimation, uncertainty, fusion, and timing; semantic accuracy alone cannot guarantee a physically valid action. Sensor Fusion must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [State Estimation And Uncertainty](05_state_estimation_and_uncertainty.md), [Real Time Constraints](07_real_time_constraints.md), [Knowledge Base Index](../INDEX.md)

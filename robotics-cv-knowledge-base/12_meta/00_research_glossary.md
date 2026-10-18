@@ -1,6 +1,6 @@
 # Research Glossary
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Research notes need explicit definitions, reading order, update rules, and falsifiable questions to remain useful as the field changes. Research Glossary must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Reading Path For Phd Student](01_reading_path_for_phd_student.md), [Knowledge Base Index](../INDEX.md)

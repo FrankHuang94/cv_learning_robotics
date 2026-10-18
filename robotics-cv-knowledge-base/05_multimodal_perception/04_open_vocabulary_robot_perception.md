@@ -1,6 +1,6 @@
 # Open Vocabulary Robot Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Vision is informative before contact, but touch, force, proprioception, depth, and language resolve ambiguities that RGB alone cannot observe. Open Vocabulary Robot Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Language Grounded Perception](03_language_grounded_perception.md), [Documentation Of Scene Memory](05_documentation_of_scene_memory.md), [Knowledge Base Index](../INDEX.md)
@@ -147,6 +147,27 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**The open-vocabulary stack of 2026**
+
+- **Backbones:**
+  - DINOv3 for dense self-supervised features;
+  - SigLIP 2 or Perception Encoder for language-aligned features.
+- **Concept segmentation and tracking:** SAM 3.
+- **Single-image object and scene reconstruction:** SAM 3D.
+- **3D lifting:** feed-forward geometry (VGGT, MapAnything).
+
+**Where the bottleneck now sits**
+
+- Recognition breadth is no longer the bottleneck.
+- The bottleneck is:
+  - linking concepts to affordances and reachability;
+  - maintaining identity through manipulation;
+  - rejecting queries for absent objects.
+
+**OVMM-style evaluation** remains the right test, because it connects semantic search to physical pickup.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -155,6 +176,8 @@ is not an analysis.
 | GelSight | 2017 | tactile sensor | Captures high-resolution contact geometry |
 | ViViDex | 2023 | visuotactile policy | Uses human video and tactile sensing for dexterity |
 | Grounding DINO | 2023 | open-set detector | Grounds free-form text in images |
+| DINOv3 | 2025 | self-supervised backbone | Frozen dense features rival specialized models |
+| SAM 3 | 2025 | concept segmentation | Segments and tracks every instance of a text or exemplar concept |
 | OWL-ViT | 2022 | open-vocabulary detector | Text-query detection |
 | ConceptFusion | 2023 | 3D mapping | Open-set multimodal 3D maps |
 

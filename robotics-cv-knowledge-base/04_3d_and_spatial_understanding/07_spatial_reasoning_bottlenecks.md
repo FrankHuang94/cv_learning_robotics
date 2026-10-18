@@ -1,6 +1,6 @@
 # Spatial Reasoning Bottlenecks
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. Spatial Reasoning Bottlenecks must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Occupancy And World Representation](06_occupancy_and_world_representation.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,26 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**New benchmarks make the bottleneck measurable**
+
+- **VSI-Bench** ("Thinking in Space", CVPR 2025): more than 5,000 video spatial questions. It found that explicit cognitive maps improve multimodal LLM distance reasoning.
+- **Cambrian-S and VSI-SUPER** (November 2025): extend this to long-horizon spatial "supersensing".
+- **Google DeepMind's ERQA:** 400 embodied-reasoning questions.
+
+**Models trained for embodied spatial reasoning**
+
+- Gemini Robotics-ER 1.5, 1.6 and 2.
+- BAAI's RoboBrain 2.0.
+- NVIDIA's Cosmos Reason line.
+
+These models report large gains on such benchmarks.
+
+**What the benchmarks still miss**
+
+The benchmarks remain mostly question answering. The core critique above stands: few evaluations verify a spatial answer through reachability or executed manipulation.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -159,6 +179,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 

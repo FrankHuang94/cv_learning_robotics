@@ -1,6 +1,6 @@
 # Scene Understanding For Manipulation
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Scene Understanding For Manipulation must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Grasp Perception](04_grasp_perception.md), [Semantic Mapping For Navigation](06_semantic_mapping_for_navigation.md), [Knowledge Base Index](../INDEX.md)

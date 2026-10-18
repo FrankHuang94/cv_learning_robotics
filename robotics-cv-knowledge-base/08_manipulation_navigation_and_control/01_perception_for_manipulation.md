@@ -1,6 +1,6 @@
 # Perception For Manipulation
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Perception becomes useful only when it closes the loop: selecting goals, constraining plans, detecting contact and progress, and triggering recovery. Perception For Manipulation must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Overview](00_overview.md), [Perception For Mobile Navigation](02_perception_for_mobile_navigation.md), [Knowledge Base Index](../INDEX.md)

@@ -1,6 +1,6 @@
 # Perception For Mobile Navigation
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Perception becomes useful only when it closes the loop: selecting goals, constraining plans, detecting contact and progress, and triggering recovery. Perception For Mobile Navigation must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Perception For Manipulation](01_perception_for_manipulation.md), [Bimanual And Dexterous Tasks](03_bimanual_and_dexterous_tasks.md), [Knowledge Base Index](../INDEX.md)

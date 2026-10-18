@@ -1,6 +1,6 @@
 # Openvla Octo And Open Models
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. Openvla Octo And Open Models must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [RT-1 RT-2 RT-X](02_rt1_rt2_rtx.md), [pi0 GR00T Helix](04_pi0_gr00t_helix.md), [Knowledge Base Index](../INDEX.md)
@@ -191,6 +191,37 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+The open ecosystem broadened considerably after mid-2025.
+
+**Open or partly open models**
+
+- **SmolVLA** (Hugging Face, June 2025, arXiv 2506.01844): a 450M-parameter VLA with a flow-matching action expert, trained on fewer than 30,000 community episodes.
+- **π0, π0-FAST and π0.5 checkpoints** in Physical Intelligence's `openpi` repository (π0.5 weights and a PyTorch port in September 2025, Apache-2.0).
+- **X-VLA** (0.9B, ICLR 2026).
+- **RDT2** (Tsinghua; weights September 2025, paper arXiv 2602.03310, ICML 2026). It is trained on more than 10,000 hours of UMI-style human demonstrations, in a residual-VQ variant and a flow-matching variant.
+- **Galaxea G0** with the Galaxea Open-World Dataset (more than 500 hours of mobile bimanual data).
+- **Ant Group's LingBot-VLA** (January 2026), about 20,000 hours from nine dual-arm embodiments.
+- **Ai2's MolmoAct** (Apache-2.0 model, CC-BY data).
+- **NVIDIA GR00T N1.5 and N1.6**, then **N1.7** with a commercially usable license (GTC, March 2026).
+
+**LeRobot as the integration point**
+
+LeRobot v0.6.0 (July 2026) added:
+
+- world-model policies;
+- GR00T N1.7 and further VLAs;
+- reward-model APIs;
+- standardized `lerobot-eval` simulation benchmarks;
+- DAgger-style rollouts with human corrections.
+
+**What remains closed or uneven**
+
+- Proprietary fleets still dominate the largest data scales: Generalist reports more than 500,000 hours for GEN-1, and Physical Intelligence, Figure and Tesla do not release raw data.
+- Licenses vary between non-commercial and Apache-2.0 within the same model family, so check the license of each checkpoint.
+- Open-model comparisons increasingly use the same arenas (RoboArena, RoboChallenge) rather than only LIBERO, which is close to saturation.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -201,6 +232,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -251,5 +287,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

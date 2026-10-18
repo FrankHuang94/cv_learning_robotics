@@ -1,6 +1,6 @@
 # Visuotactile Learning
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Vision is informative before contact, but touch, force, proprioception, depth, and language resolve ambiguities that RGB alone cannot observe. Visuotactile Learning must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Rgb Depth Tactile Proprioception](01_rgb_depth_tactile_proprioception.md), [Language Grounded Perception](03_language_grounded_perception.md), [Knowledge Base Index](../INDEX.md)
@@ -147,6 +147,20 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Tactile sensing moved from research rigs toward products and foundation models.**
+
+- **Representation learning**
+  - Meta's Sparsh: self-supervised tactile representations.
+  - Digit 360: a multimodal fingertip released with GelSight and Wonik in late 2024.
+  - Sparsh-X (June 2025) fuses image, audio, inertial and pressure signals from Digit 360. Its authors report large policy-success gains.
+- **Commercial hardware and models**
+  - Figure 03 added tactile fingertips.
+  - Amazon's Vulcan stow-and-pick robot (May 2025) uses force and tactile sensing in production.
+  - Microsoft's Rho-alpha (January 2026) routes tactile input through a dedicated action expert inside a VLA.
+- **Scaling preprints:** a cluster of 2026 preprints on visuo-tactile scaling has appeared, including visuo-tactile-language-action models and tactile world models. None has yet become a standard baseline.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -155,6 +169,8 @@ is not an analysis.
 | GelSight | 2017 | tactile sensor | Captures high-resolution contact geometry |
 | ViViDex | 2023 | visuotactile policy | Uses human video and tactile sensing for dexterity |
 | Grounding DINO | 2023 | open-set detector | Grounds free-form text in images |
+| DINOv3 | 2025 | self-supervised backbone | Frozen dense features rival specialized models |
+| SAM 3 | 2025 | concept segmentation | Segments and tracks every instance of a text or exemplar concept |
 | GelSight | 2017 | tactile vision | High-resolution contact geometry |
 | See to Touch | 2023 | visuotactile policy | Cross-modal pretraining for dexterous control |
 

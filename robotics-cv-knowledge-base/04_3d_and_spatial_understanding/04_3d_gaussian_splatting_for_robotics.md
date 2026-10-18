@@ -1,6 +1,6 @@
 # 3D Gaussian Splatting For Robotics
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. 3D Gaussian Splatting For Robotics must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Neural Scene Representations](03_neural_scene_representations.md), [Dynamic 4D Scene Understanding](05_dynamic_4d_scene_understanding.md), [Knowledge Base Index](../INDEX.md)
@@ -148,6 +148,17 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Gaussian splatting moved toward feed-forward construction and simulation use.**
+
+- **AnySplat** (mid-2025) predicts 3D Gaussian scenes from unposed, uncalibrated views in one pass.
+- **NVIDIA** integrated Gaussian-based neural reconstruction for building simulation scenes into Isaac Sim, as reported for Isaac Sim 6.0.
+- **EmbodiedSplat** (ICCV 2025) uses phone-captured splats for real-to-sim-to-real navigation.
+- **Soft-body digital twins built from splats** (arXiv 2511.04665) yield simulated policy success that correlates with real success at 0.897 or higher.
+
+**The caveat above still holds.** Photometric fidelity does not imply collision-safe geometry or correct contact dynamics.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -157,6 +168,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 | SplaTAM | 2024 | Gaussian SLAM | Online tracking and mapping with Gaussian splats |
 | LERF | 2023 | language field | Open-vocabulary queries in neural 3D scenes |
 

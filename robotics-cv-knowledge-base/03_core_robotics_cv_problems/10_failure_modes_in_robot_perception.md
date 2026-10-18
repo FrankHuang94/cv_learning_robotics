@@ -1,6 +1,6 @@
 # Failure Modes In Robot Perception
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Failure Modes In Robot Perception must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Human Robot Scene Understanding](09_human_robot_scene_understanding.md), [Knowledge Base Index](../INDEX.md)

@@ -1,9 +1,9 @@
 # Future Roadmaps
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Frontier
 > **Why It Matters for Robotics:** This is a very recent, rapidly changing area; claims here are dated and should be distinguished from independently reproduced evidence. Future Roadmaps must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
-> **Related Sections:** [Robotics Cv Open Problems](06_robotics_cv_open_problems.md), [Knowledge Base Index](../INDEX.md)
+> **Related Sections:** [Industry Status 2026](08_industry_status_2026.md), [Robotics Cv Open Problems](06_robotics_cv_open_problems.md), [Knowledge Base Index](../INDEX.md)
 
 
 > **Frontier note:** Very recent / subject to rapid change. Company-reported demonstrations are treated as evidence of a direction, not as independent proof of general capability.
@@ -155,6 +155,25 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Checking the June 2026 roadmap against October 2026 evidence**
+
+- **Hierarchy, continuous action heads and on-device inference:** progressed as predicted.
+- **World models as data engines:** realized faster than expected. In addition, world models emerged as evaluators and policy backbones.
+- **Recovery and unattended operation:** still the least evidenced capabilities.
+
+**Near-term items to watch, as of October 18, 2026**
+
+- **GR00T N2:** NVIDIA's release, promised by the end of 2026.
+- **Tesla Optimus V3** reveal and real production volumes.
+- **1X NEO** first consumer deliveries.
+- **Agility's public listing** after its SPAC deal.
+- **AgiBot's Hong Kong IPO.**
+- **CoRL 2026** in Austin, November 9–12.
+- **Second BEHAVIOR-style challenge results**, if held.
+- **ISO 25785-1:** progress on this safety standard for dynamically stable industrial mobile robots, which was still a committee draft.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -164,6 +183,11 @@ is not an analysis.
 | Gemini Robotics | 2025 | VLA | Extended a multimodal model toward dexterous physical action |
 | Helix | 2025 | humanoid VLA | Demonstrated asynchronous semantic and 200 Hz control |
 | pi0.5 | 2025 | VLA | Targeted unseen-home generalization with heterogeneous co-training |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| V-JEPA 2 | 2025 | latent world model | Self-supervised video model with action-conditioned planning |
+| Helix 02 | 2026 | humanoid VLA | Adds a 1 kHz learned whole-body controller beneath the 200 Hz policy |
+| Cosmos 3 | 2026 | world foundation model | Open model unifying physical reasoning, video generation, and actions |
 
 These systems should not be read as a linear leaderboard. They make different assumptions about calibration, data access, action spaces, environment structure, and evaluation. The most useful comparison asks which assumptions remain valid in the target robot deployment.
 
@@ -174,6 +198,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | SimplerEnv | VLA evaluation | real-to-sim correlation and success | Attempts scalable policy comparison |
 | LIBERO | knowledge transfer | task success | Tests several generalization regimes |
 | BEHAVIOR-1K | household activities | task and predicate success | Moves evaluation toward long-horizon physical state change |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 
@@ -214,5 +240,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

@@ -1,6 +1,6 @@
 # Overview
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Robot learning is constrained less by raw model capacity than by expensive action-labeled trajectories, inconsistent embodiments, sparse failures, and weak evaluation. Overview must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Robot Data Bottleneck](01_robot_data_bottleneck.md), [Knowledge Base Index](../INDEX.md)
@@ -167,6 +167,8 @@ These systems should not be read as a linear leaderboard. They make different as
 | DROID | in-the-wild manipulation | downstream success | Diverse scenes, tasks, and operators |
 | BridgeData V2 | language-conditioned manipulation | policy success | Broad tabletop skills |
 | RoboCasa | simulated household manipulation | task success | Large procedural scenes and tasks |
+| RoboArena | distributed real-robot evaluation | pairwise preference ranking | Crowd-sourced blind A/B comparisons of generalist policies |
+| BEHAVIOR Challenge 2025 | long-horizon household tasks | partial-credit Q-score | Fifty full-length tasks expose the long-horizon gap |
 
 Offline metrics are necessary for diagnosis but insufficient for robotics. Add closed-loop success, time-to-completion, collision or damage rate, human interventions, recovery success, calibration error, worst-group performance, and confidence calibration. Report uncertainty across trials and environments rather than selecting demonstration videos.
 

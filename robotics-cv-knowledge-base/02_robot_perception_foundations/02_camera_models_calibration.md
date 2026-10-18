@@ -1,6 +1,6 @@
 # Camera Models Calibration
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Reliable robot behavior depends on calibrated geometry, temporal estimation, uncertainty, fusion, and timing; semantic accuracy alone cannot guarantee a physically valid action. Camera Models Calibration must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Geometry And Coordinate Frames](01_geometry_and_coordinate_frames.md), [Depth Stereo RGB-D](03_depth_stereo_rgbd.md), [Knowledge Base Index](../INDEX.md)
@@ -150,6 +150,26 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Calibration as a learned input**
+
+Feed-forward geometry models now estimate intrinsics and poses jointly with depth, and accept known calibration when it is available:
+
+- VGGT (CVPR 2025 Best Paper);
+- MapAnything (3DV 2026), which accepts optional intrinsics, poses or depth;
+- Depth Anything 3 (November 2025), which predicts depth, pose and intrinsics from any number of views.
+
+Calibration is therefore becoming a soft input rather than a hard prerequisite.
+
+**Camera geometry as a policy input**
+
+On the policy side, ICRA 2026's Best Paper on Robot Learning, "Do You Know Where Your Camera Is? View-Invariant Policy Learning with Camera Conditioning", conditions imitation policies on camera extrinsics. Explicit camera geometry improves viewpoint robustness of learned policies.
+
+**Implication**
+
+Calibration quality has become a variable to report and perturb, not a setup step to omit.
 
 ## Key Systems / Methods / Papers
 

@@ -1,6 +1,6 @@
 # Classical Robot Vision
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** The history matters because today's foundation policies inherit unresolved assumptions from calibration, stereo, SLAM, recognition, and behavior cloning. Classical Robot Vision must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Timeline Overview](00_timeline_overview.md), [Learning Based Robot Vision](02_learning_based_robot_vision.md), [Knowledge Base Index](../INDEX.md)

@@ -1,6 +1,6 @@
 # Compute Latency And Deployment
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Embodiment determines observability, action space, control rate, data compatibility, and which visual errors become dangerous. Compute Latency And Deployment must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Sensor Suites](04_sensor_suites.md), [Knowledge Base Index](../INDEX.md)
@@ -149,6 +149,22 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Onboard compute.** NVIDIA's Jetson AGX Thor, a Blackwell GPU with 128 GB of memory, became generally available on August 25, 2025, with a $3,499 developer kit. It is now the default onboard computer for many humanoids, including the GR00T reference design.
+
+**Cost.** In July 2026 NVIDIA raised Jetson prices without announcement by up to about 100%; the Thor developer kit went to $5,499, per trade press. Coverage attributed the rise to memory costs. Edge compute is therefore a material bill-of-materials and research-budget factor rather than a declining commodity.
+
+**Model-side responses to latency**
+
+- **On-device VLAs:** Gemini Robotics On-Device (June 2025) and On-Device 2 (July 2026).
+- **Compact models:** SmolVLA (450M) and X-VLA (0.9B).
+- **Asynchronous execution:** Real-Time Chunking.
+- **Explicit rate hierarchies:** Helix 02 at 1 kHz for S0, 200 Hz for S1 and a slower S2.
+- **Hosted inference for non-real-time layers:** Physical Intelligence's API beta (October 2026).
+
+**What to report.** Deployment papers should state which layers run onboard and which run offboard, and the tail latency of each.
 
 ## Key Systems / Methods / Papers
 

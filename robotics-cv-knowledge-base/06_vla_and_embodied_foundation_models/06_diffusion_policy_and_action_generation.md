@@ -1,6 +1,6 @@
 # Diffusion Policy And Action Generation
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Embodied foundation models place visual representation learning inside a perception-memory-reasoning-action loop, where errors alter the next observation and can cause physical failure. Diffusion Policy And Action Generation must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [World Models For Robotics](05_world_models_for_robotics.md), [Generalist Vs Specialist](07_generalist_vs_specialist.md), [Knowledge Base Index](../INDEX.md)
@@ -182,6 +182,32 @@ is not an analysis.
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
 
+## Recent Developments (Mid-2025 to October 2026)
+
+**Flow matching has become the default continuous action generator in open and industrial VLAs.** Examples include:
+
+- π0, π0.5 and π0.7;
+- GR00T;
+- SmolVLA;
+- X-VLA;
+- RDT2-FM;
+- LingBot-VLA;
+- Galaxea G0.
+
+**Latency-aware execution has improved.** Physical Intelligence's Real-Time Chunking (June 2025) generates the next chunk while the current one executes. It constrains the new chunk to stay consistent with the actions still in flight, removing pauses and discontinuities at chunk boundaries.
+
+**RL now reaches flow and diffusion policies.**
+
+- **πRL** (arXiv 2510.25889) derives tractable likelihoods or SDE-based exploration for flow-matching VLAs.
+- **RECAP** (π\*0.6) instead conditions a flow policy on learned advantages.
+
+**TRI's large behavior model study** (arXiv 2507.05331, July 2025) is the most careful public evaluation of diffusion-based multitask policies. It used about 1,700 hours of data, around 1,800 real trials and more than 47,000 simulated rollouts. Fine-tuned multitask models beat single-task baselines and needed substantially less task-specific data.
+
+**Discrete tokenization has not disappeared.**
+
+- RDT2 offers a residual-VQ variant.
+- The RSS 2026 finalist "OAT: Ordered Action Tokenization" revisits token design.
+
 ## Key Systems / Methods / Papers
 
 | Name | Year | Type | Why It Matters |
@@ -192,6 +218,11 @@ is not an analysis.
 | Octo | 2024 | open policy | Generalist transformer trained across robot datasets |
 | pi0 | 2024 | flow VLA | Used a flow-matching action expert |
 | Helix | 2025 | humanoid VLA | Separated 7-9 Hz semantics from 200 Hz control |
+| Gemini Robotics 1.5 / 2 | 2025 | reasoner + VLA | Pairs an embodied-reasoning planner with a VLA; version 2 adds whole-body humanoid control |
+| pi*0.6 (RECAP) | 2025 | RL-refined VLA | Advantage-conditioned RL from experience and interventions |
+| GR00T N1.6 / N1.7 | 2025 | humanoid VLA | Open humanoid policy with a Cosmos Reason planner |
+| DreamZero | 2026 | world action model | Jointly predicts video and actions; basis of the GR00T N2 preview |
+| pi0.7 | 2026 | steerable VLA | Prompts mix subtask text, metadata, and subgoal images |
 | Diffusion Policy | 2023 | action generation | Multimodal receding-horizon control |
 | 3D Diffusion Policy | 2024 | 3D policy | Uses compact 3D visual representations |
 
@@ -244,5 +275,10 @@ This topic sits between sensing and control. It depends on the foundations in `0
 - [Figure Helix](https://www.figure.ai/news/helix)
 - [Gemini Robotics](https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/)
 - [NVIDIA GR00T](https://developer.nvidia.com/isaac/gr00t)
+- [Physical Intelligence pi*0.6 (RECAP)](https://arxiv.org/abs/2511.14759)
+- [Gemini Robotics 1.5](https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/)
+- [V-JEPA 2](https://arxiv.org/abs/2506.09985)
+- [RoboArena](https://arxiv.org/abs/2506.18123)
+- [NVIDIA Cosmos](https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai)
 - [Robotics: Science and Systems proceedings](https://www.roboticsproceedings.org/)
 - [CoRL proceedings](https://proceedings.mlr.press/)

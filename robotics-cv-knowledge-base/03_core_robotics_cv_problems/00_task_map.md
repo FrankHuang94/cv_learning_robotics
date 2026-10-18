@@ -1,6 +1,6 @@
 # Task Map
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Task Map must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Object Detection For Robotics](01_object_detection_for_robotics.md), [Knowledge Base Index](../INDEX.md)

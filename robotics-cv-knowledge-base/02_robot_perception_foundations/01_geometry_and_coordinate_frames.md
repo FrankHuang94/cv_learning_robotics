@@ -1,6 +1,6 @@
 # Geometry And Coordinate Frames
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Foundational
 > **Why It Matters for Robotics:** Reliable robot behavior depends on calibrated geometry, temporal estimation, uncertainty, fusion, and timing; semantic accuracy alone cannot guarantee a physically valid action. Geometry And Coordinate Frames must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Robot Perception Overview](00_robot_perception_overview.md), [Camera Models Calibration](02_camera_models_calibration.md), [Knowledge Base Index](../INDEX.md)

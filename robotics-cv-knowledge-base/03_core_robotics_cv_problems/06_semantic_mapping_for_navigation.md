@@ -1,6 +1,6 @@
 # Semantic Mapping For Navigation
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** This problem converts visual evidence into state variables that manipulation, navigation, and interaction policies can use under clutter, occlusion, contact, and time pressure. Semantic Mapping For Navigation must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Scene Understanding For Manipulation](05_scene_understanding_for_manipulation.md), [Egocentric Perception](07_egocentric_perception.md), [Knowledge Base Index](../INDEX.md)

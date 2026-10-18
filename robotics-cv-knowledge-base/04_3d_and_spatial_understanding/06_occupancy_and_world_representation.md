@@ -1,6 +1,6 @@
 # Occupancy And World Representation
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Advanced
 > **Why It Matters for Robotics:** Robots act in metric 3D worlds that persist and change over time; 2D recognition must therefore be lifted into spatial, temporal, and uncertainty-aware representations. Occupancy And World Representation must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Dynamic 4D Scene Understanding](05_dynamic_4d_scene_understanding.md), [Spatial Reasoning Bottlenecks](07_spatial_reasoning_bottlenecks.md), [Knowledge Base Index](../INDEX.md)
@@ -157,6 +157,8 @@ is not an analysis.
 | NeRF | 2020 | neural rendering | Popularized continuous scene fields |
 | 3D Gaussian Splatting | 2023 | scene representation | Enabled high-quality real-time rendering |
 | ConceptFusion | 2023 | open-set mapping | Fused language-aligned features into 3D maps |
+| VGGT | 2025 | feed-forward 3D | Infers cameras, depth, and point maps from many views in one pass |
+| D4RT | 2025 | feed-forward 4D | Queries dynamic geometry and motion for any point at any time |
 | Voxblox | 2017 | mapping | Incremental TSDF/ESDF maps for planning |
 | NeuralRecon | 2021 | 3D reconstruction | Real-time learned volumetric reconstruction |
 

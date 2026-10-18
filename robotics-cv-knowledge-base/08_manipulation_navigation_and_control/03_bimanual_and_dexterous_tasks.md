@@ -1,6 +1,6 @@
 # Bimanual And Dexterous Tasks
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 > **Level:** Intermediate
 > **Why It Matters for Robotics:** Perception becomes useful only when it closes the loop: selecting goals, constraining plans, detecting contact and progress, and triggering recovery. Bimanual And Dexterous Tasks must be evaluated by its effect on physical decisions, not only by passive recognition accuracy.
 > **Related Sections:** [Perception For Mobile Navigation](02_perception_for_mobile_navigation.md), [Long Horizon Task Execution](04_long_horizon_task_execution.md), [Knowledge Base Index](../INDEX.md)
@@ -146,6 +146,26 @@ is not an analysis.
    environment diversity, embodiment diversity, and trajectory count?
 6. Which failures are detectable early enough for abstention, replanning, or
    human assistance, and what is the cost of those safeguards?
+
+## Recent Developments (Mid-2025 to October 2026)
+
+**Dexterous and bimanual capability is now reported in longer, more realistic runs.** All results below are company-reported.
+
+- **Physical Intelligence π\*0.6:** multi-hour espresso making, laundry folding and box assembly.
+- **Dyna Robotics:** more than 24 hours of continuous napkin folding at above 99% success.
+- **ByteDance GR-3** (July 2025): long-horizon bimanual mobile tasks.
+- **Gemini Robotics 2** (July 2026) reports per-task dexterity rates:
+  - 92% for unscrewing a light bulb;
+  - about 40% for opening a Ziploc bag;
+  - 44% for handling a trash bag.
+
+These figures illustrate both progress and how task-dependent reliability remains.
+
+**Hardware and sensing**
+
+- Figure 03 added palm cameras and tactile fingertips.
+- Microsoft's Rho-alpha (January 2026) feeds tactile signals through a separate action expert.
+- OmniRetarget generates interaction-preserving humanoid loco-manipulation data from human motion. IEEE RAS coverage reports it as ICRA 2026's Best Conference Paper.
 
 ## Key Systems / Methods / Papers
 

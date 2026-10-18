@@ -1,6 +1,6 @@
 # Robotics-CV Knowledge Base
 
-> **Last Updated:** 2026-06-11
+> **Last Updated:** 2026-10-18
 
 This repository is a living, robotics-first research database about the transition from passive visual recognition to actionable spatial intelligence. It focuses on manipulation, navigation, 3D/4D scene understanding, multimodal sensing, vision-language-action models, world models, robot data, and closed-loop evaluation.
 
@@ -11,6 +11,12 @@ diagnostic ablations, a reproducibility checklist, and thesis-level research
 questions. Section 06 adds architecture-specific mathematical and experimental
 analysis for VLAs, action generators, world models, language grounding, and
 cross-embodiment scaling.
+
+The October 2026 refresh adds dated "Recent Developments" sections to 45 notes,
+rewrites the 2025 and 2026 frontier notes, and adds an industry-status snapshot
+in [10_frontier_2024_2026/08_industry_status_2026.md](10_frontier_2024_2026/08_industry_status_2026.md).
+A Simplified Chinese reference translation with the same structure lives in
+[`Chinese translation/`](../Chinese%20translation/README.md).
 
 ## What “Robotics-First CV” Means
 
